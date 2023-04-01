@@ -1,0 +1,173 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block title %} <title id="hostel-title">Form Fill Up Fee
+</title>{% endblock title %}
+{% block cssfile1 %} <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">{% endblock cssfile1 %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'semesterSystem/css/semester.css' %}">{% endblock cssfile %}
+{% block cssfile2 %} <link rel="stylesheet" href="{% static 'post/css/base.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}">{% endblock cssfile3 %}
+{% block js_file %} <script src="{% static 'semesterSystem/js/registration_mid_term.js' %}"></script>{% endblock js_file %}
+
+
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+        <div class="main-body">
+
+
+            <div class="main">
+                <div class="back-btn">
+                    <a onclick="history.back()">
+                    <div class="btn">
+                        <p>Back</p>
+                    </div></a>
+
+                </div>
+
+
+
+                <div class="create-post-body" id="create-post-body">
+
+                    <div class="update-hostel-data">
+                        <p class="d-c-title-u-h-data">Update Form Fill Up  Data :</p>
+                        <button style="border:none" class="d-c-btn" onclick="on_universal('overlay_reg')">Update</button>
+                    </div>
+                    <div class="line"></div>
+                        <form id="search-registration-students">
+                        <div class="search-add-bar">
+
+                                {% csrf_token %}
+                                <div class="input">
+                                    <input type="text" id="keyword" placeholder="Query  students . . ." name="keyword">
+                                </div>
+
+
+                            <button type="submit"  class="add-btn search-btn">Search</button>
+
+
+                        </div>
+                        </form>
+
+
+                        <div class="hostel-students">
+                        {% for student in students %}
+
+                                <div class="h-student">
+                                    <a style="color:unset;" href="{% url 'update_registration_fee' student.id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+                                            <img src="{{ student.student.profile.image.url }}" alt="">
+                                        </div>
+                                        <div >
+                                            <p class="name">{{student.student.name}}</p>
+                                            <small class="paid-unpaid"><span>Status :</span> {{student.status}}</small>
+
+
+
+                                                <small><span>Roll :</span> {{student.student.roll}}</small>
+                                                <small><span>Semester :</span> {{student.semester}}</small>
+
+
+                                                <small><span>Department :</span> {{student.student.department}}</small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div onclick="re_odots({{student.id}})" class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div id='toggle-option{{student.student.id}}' class="option-toggle">
+                                    <a href="{% url 'profile' student.student.id %}">view profile</a>
+
+                                </div>
+
+                            </div>
+
+                                </div>
+
+                        {% endfor %}
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div id="overlay_reg" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-u-reg-fee">
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Authenticate</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="u-reg-authenticate-form">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small class="confirm-text">**Confirm your password</small>
+                                    <div class="input">
+                                        <span>Password :</span> <input id="reg-u-auth-pass" name="password" placeholder="Enter password . . ." type="password">
+                                        <input hidden id="reg-u-auth-email"  name="email" value="{{ request.user.email }}">
+                                    </div>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="update-reg-fee-submit-btn" class=""  type="submit">
+                                    <p id="submit-text-u-reg-fee-r">Submit</p>
+
+                                    <div id="content-loader-u-r-f-r" class="content-loader d-none">
+                                        <div id="loader-d-c-u-r-f" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay_reg')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+        </div>
+    {% endblock container_main_body %}
+    {% block container_right %}
+    {% endblock container_right %}

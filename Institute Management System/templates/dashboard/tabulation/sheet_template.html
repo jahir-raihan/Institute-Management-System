@@ -1,0 +1,36 @@
+{% load static %}
+{% csrf_token %}
+    {% if found %}
+    <style>
+        .tab-btn {
+          margin-top:1em !important;
+          cursor: pointer;
+
+          background: #172577 !important;
+          color: white ;
+          border: none;
+          letter-spacing: 1px;
+          border-radius: 4px;
+
+
+          width: 190px !important;
+
+
+          margin-top:1em;
+          padding-left:.5em;
+          padding-right:.5em;
+          height: 30px !important;
+
+        }
+
+    </style>
+    <div class="search-middle" style="text-align:center;">
+
+
+        <p style="color:#172577;"> File Found.</p>
+        <a target="_blank" href="{% url path_name file_id %}"><button class="tab-btn"> {{button_name}}</button></a>
+
+        {% else %}
+            <p style="color:#172577; padding-bottom:2em;  text-align:center;"> File Not Found.</p>
+        {% endif %}
+    </div>

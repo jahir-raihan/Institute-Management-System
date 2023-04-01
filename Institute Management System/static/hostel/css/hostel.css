@@ -1,0 +1,267 @@
+.search-add-bar {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 80% 20%;
+      grid-template-columns: 80% 20%;
+  margin-bottom: 1em;
+}
+
+.search-add-bar .input input {
+  height: 35px;
+  width: 95%;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  background: #f5f5f5;
+  padding: 0 1em;
+  padding-left: 1.5em;
+  font-size: .7em;
+}
+
+small {
+  opacity: 60%;
+  padding-right: 1em;
+}
+
+.add-btn {
+  padding: 0em 1em;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  background: #6e7267;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #0C82EF;
+  -webkit-transition-duration: .1s;
+          transition-duration: .1s;
+}
+
+.h-student {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 89% 10%;
+      grid-template-columns: 89% 10%;
+  gap: 1%;
+  margin-top: 1em;
+}
+
+.h-student .h-s-left {
+  padding: .3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 8px;
+}
+
+.h-student .h-s-left .img {
+  margin-right: .5em;
+}
+
+.h-student .h-s-left .img img {
+  width: 40px;
+  height:40px;
+  object-fit:cover;
+
+  border-radius: 50%;
+}
+
+.h-student .h-s-left .name {
+  color: black;
+  font-weight: bold;
+  opacity: 70%;
+}
+
+.h-student .h-s-left small {
+  display: block;
+}
+
+.h-s-left:hover {
+  background: #e2e2e248;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+  cursor: pointer;
+  -webkit-box-shadow: 9px 12px 17px -16px #000000;
+  box-shadow: 9px 11px 11px -16px #000000;
+}
+
+.h-s-left:hover small {
+  opacity: 100%;
+}
+
+.hostel-students {
+  max-height: 450px;
+  overflow-y: scroll;
+  padding-bottom: 1em;
+}
+
+.hostel-students .h-student .odots {
+  cursor: pointer;
+  padding: .2em;
+  padding-top: 1em;
+  padding-left: .43em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.hostel-students .h-student .odots .dot {
+  margin-right: .2em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.568);
+}
+
+.hostel-students .h-student .odots:hover {
+  background: #e2e2e2;
+}
+
+.option-toggle a {
+  font-size: .8em;
+}
+.option-toggle{
+  width:100px;
+  padding:.1 .3em !important;
+}
+
+.student-detail {
+  padding: 1em .3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.student-detail p {
+  color: black;
+  font-size: .9em;
+}
+
+.student-detail .s-d-left {
+  margin-right: 1em;
+}
+
+.student-detail .s-d-left img {
+  width: 80px;
+  height:80px;
+  object-fit:cover;
+  border-radius: 50%;
+}
+
+.student-detail .s-d-right .name {
+  font-weight: bold;
+  color: black;
+  font-size: 1em;
+}
+
+.student-detail .s-d-right p {
+  margin-bottom: .5em;
+}
+
+.student-detail .s-d-right p span {
+  font-weight: bold;
+}
+
+.student-detail .s-d-right .select-starting-month span {
+  font-weight: bold;
+}
+
+.student-detail .s-d-right .select-starting-month select {
+  background: #e2e2e28c;
+  border: none;
+  padding: .3em 1em;
+  border-radius: 24px;
+  outline: none;
+}
+
+.search-btn {
+  background: #0C82EF;
+}
+
+.add-to-hostel-btn {
+
+  background: #0C82EF;
+  padding: .3em 2em !important;
+}
+.update-fee-input{
+ display:flex;
+
+ margin-top:2em;
+}
+.update-fee-btn{
+
+
+    margin-left:1em;
+}
+
+.update-fee-input input {
+  height: 35px;
+  width: 200px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  background: #f5f5f5;
+  padding: 0 1em;
+  padding-left: 1.5em;
+  font-size: .7em;
+}
+
+.less-then-800 {
+  color: black;
+  text-align: center;
+}
+
+.paid-unpaid{
+    color:rgb(255, 123, 0);
+}
+
+.message{
+    border-radius: 4px;
+    color:rgb(255, 255, 255);
+    min-width:500px;
+    max-width:500px;
+    margin:0em auto;
+    margin-top:2em;
+    padding:.6em;
+    font-size: .8em;
+    background:rgb(0, 195, 255);
+}
+
+.disabled{
+    background:#e2e2e2;
+}
+.disabled:hover{
+    background:#e2e2e2;
+    cursor:unset;
+}
+
+.not-found-image{
+  width:100%;
+
+}
+
+@media only screen and (max-width:450px){
+    .update-fee-input{
+        margin-top:1em;
+        display:block !important;
+    }
+    .update-fee-btn{
+        margin-left:0em;
+        margin-top:.5em;
+        padding:.6em 2em !important;
+    }
+    .update-fee-input input{
+        width:100%;
+    }
+}
+
+.line {
+    width: 100%;
+    margin: 2em 0em;
+    height: 0.5px;
+    background: black;
+}

@@ -1,0 +1,131 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'post/css/profile.css' %}"> {% endblock cssfile %}
+{% block title %} <title> {{user.name}} Profile</title> {% endblock title %}
+
+
+
+
+    {% block container_left %}
+         {% include 'collegeSystem/profile-left-section-nav.html' %}
+
+    {% endblock container_left %}
+
+
+    {% block container_main_body %}
+            <div class="main-body">
+
+                <div class="back-btn-profile">
+                    <div class="btn" onclick="history.back()">
+                        <p>Back</p>
+                    </div>
+
+                </div>
+
+            <div class="main">
+
+
+                <div  class="profile-body">
+
+                    <div class="profile-left">
+
+                        <div class="profile-img">
+                            <img src="{{ user.profile.image.url }}" alt="">
+                        </div>
+
+                        <div class="user-results">
+                            {% if request.user.is_teacher == False %}
+
+                            <div class="about-title result-title">
+
+                            </div>
+
+                            <div class="results-info">
+
+                            </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    {% if is_teacher %}
+                        <div class="profile-right">
+                            <div class="student-info">
+
+                                <h3 class="student-name">{{user.name | title}}</h3>
+                                <p><span>Education :</span> {{user.education}}</p>
+
+                            </div>
+
+                            <div class="about">
+                                <div class="about-title ">
+                                    Contact Info
+                                </div>
+
+                                <p><span>Phone :</span> {{user.phone}}</p>
+
+                                <p><span>Email :</span> {{user.email}}</p>
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+                    {% else %}
+
+
+                    <div class="profile-right">
+                        <div class="student-info">
+
+                            <h3 class="student-name">{{user.name | title}}</h3>
+                            <p><span>Semester :</span> {{user.semester}}</p>
+                            <p><span>Mother Name :</span> {{user.mother}}</p>
+                            <p><span>Father Name :</span> {{user.father}}</p>
+                            <p><span>Department :</span> {{user.department}}</p>
+                            <p><span>Roll :</span> {{user.roll}}</p>
+                            <p><span>Registration :</span> {{user.registration}}</p>
+                            <p><span>Session :</span> {{user.session}}</p>
+                        </div>
+
+                        <div class="about">
+                            <div class="about-title ">
+                                Contact
+                            </div>
+
+                            <p><span>Phone :</span> {{user.phone}}</p>
+
+                            <p><span>Email :</span> {{user.email}}</p>
+
+                        </div>
+
+                        <div class="basic-info">
+
+                            <div class="about-title">Basic Info</div>
+
+
+                            <p><span>Gender : </span> {{user.gender}}</p>
+                            <p><span>Religion : </span>{{user.religion}}</p>
+                        </div>
+
+
+
+
+                    </div>
+                    {% endif %}
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    {% endblock container_main_body %}
+
+    {% block container_right %}
+    {% endblock container_right %}

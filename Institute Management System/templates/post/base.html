@@ -1,0 +1,332 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'post/css/side_nav.css' %}">
+    {% block cssfile %} <link rel="stylesheet" href="{% static 'post/css/base.css' %}"> {% endblock cssfile %}
+    {% block cssfile2 %} {% endblock cssfile2 %}
+
+    <link rel="stylesheet" href="{% static 'post/css/notification_toggle.css' %}">
+    {% block cssfile3 %} {% endblock cssfile3 %}
+    {% block cssfile4 %} {% endblock cssfile4 %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> {% block cssfile1 %} {% endblock cssfile1 %}
+    <script src="{% static 'post/javascript/jquery.js' %}"></script>
+    {% block title %}<title>Base template</title>{% endblock title %}
+    {% block ex_js_file %}<script src="{% static 'dashboard/js/dashboard.js' %}"></script> {% endblock ex_js_file %}
+
+    <script src="{% static 'post/javascript/base.js' %}"></script>
+    <script src="{% static 'hostel/js/hostel.js' %}"></script>
+    <script src="{% static 'semesterSystem/js/semester.js' %}"></script>
+    {% block js_file %}{% endblock js_file %}
+    {% block js_file1 %} {% endblock js_file1 %}
+
+
+</head>
+<body id="body">
+    
+    <header>
+        <div class="nav">
+            
+            <div class="nav-left">
+                
+                    <a href="/"><img id="logo" src="{% static 'post/images/Logo.jpg' %}" alt=""></a>
+                    <a href="/"><p class="logo-text">{{clg_name}}</p></a>
+                
+            </div>
+            
+
+            <div class="nav-right">
+
+                <div  style="margin-right:.8em">
+
+                    <div class="notification-icon" onclick="show_notification()" title="Notifications">
+
+                        <img src="{% static 'post/images/bell.png' %}" alt="">
+                        <p class="n-number"></p>
+
+                    </div>
+
+                    <div class="notification-toggle d-none" id="notification-toggle1">
+                        <p class="notification-header">Notifications</p>
+                        <div class="content-links">
+                            {% for ntf in notifications %}
+                                <a href="{% url 'view' ntf.post_id %} ">
+                                    <div class="link ">
+                                        <div class="link-left">
+                                            <img src="{{ntf.notification_author.profile.image.url}} " alt="img">
+                                        </div>
+                                        <div class="link-right">
+                                            <p>
+                                                <span class="n-u-name">{{ntf.notification_author.name}} </span> {{ntf.notification}} </p>
+                    
+                                            <small style="color:rgb(75, 75, 75)">{{ntf.notification_date|timesince:time}}</small>
+                    
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-icon" title="Profile">
+                    <a href="{% url 'profile' request.user.id  %}"><img src="{{ request.user.profile.image.url }}" alt=""></a>
+                </div>
+                {% if request.user.is_accountant or request.user.is_admin or request.user.is_superuser %}
+
+                <div class="dashboard-icon" title="Accounting">
+                    <a href="{% url 'transaction_home' %}">
+                        <img draggable="false" src="{% static 'post/images/bill.png' %}" alt="Accounting Icon">
+                    </a>
+                </div>
+                {% endif %}
+                {% if request.user.is_admin or request.user.is_superuser %}
+                <div class="dashboard-icon" title="Tabulation & Mark Sheet">
+                    <a href="{% url 'tabulation_filter' %}">
+                        <img draggable="false" src="{% static 'post/images/letter-t.png' %}" alt="Dashboard Icon">
+                    </a>
+                 </div>
+                 <div class="dashboard-icon" title="Dashboard">
+                    <a href="{% url 'dashboard_home' %}">
+                        <img draggable="false" src="{% static 'post/images/dashboard.svg' %}" alt="Dashboard Icon">
+                    </a>
+                 </div>
+
+                {% endif %}
+
+
+
+            </div>
+
+            <div class="nav-right-noti-toggle-section d-none">
+
+
+
+                <div id='n-icon-2'>
+
+                    <div class="notification-icon" onclick="show_notification2()" >
+
+                        <img src="{% static 'post/images/bell.png' %}" alt="">
+                        <p class="n-number"></p>
+
+                    </div>
+                    <div class="notification-toggle  d-none" id="notification-toggle2">
+                        <p class="notification-header">Notifications</p>
+                        <div class="content-links">
+                            {% for ntf in notifications %}
+                                <a href="{% url 'view' ntf.post_id %}">
+                                    <div class="link ">
+                                        <div class="link-left">
+                                            <img src="{{ntf.notification_author.profile.image.url}} " alt="img">
+                                        </div>
+                                        <div class="link-right">
+                                            <p>
+                                                <span class="n-u-name">{{nft.notification_author.name}} </span> {{ntf.notification}} </p>
+                    
+                                            <small style="color:rgb(75, 75, 75)">{{ntf.notification_date|timesince:time}}</small>
+                    
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div  class="toggle">
+                    <div class="ham-bar"  onclick="myFunction()" title="menu">
+                        <div class="ham"></div>
+                        <div class="ham"></div>
+                        <div class="ham"></div>
+                    </div>
+
+
+                    <div id="toggle-nav"  class="">
+
+                        <div class="contents">
+
+
+
+
+                            <div class="toggle-profile-link">
+                                <a href="{% url 'profile' request.user.id %}">
+                                    <img src="{{request.user.profile.image.url}}" alt="{{request.user}} Profile pic">
+                                    <p class="name-title">{{request.user.name | title}}</p>
+
+                                </a>
+                            </div>
+
+
+                            <div class="result-link">
+                                <a href="{% url 'view_result' %}">
+                                    <div  class="title">
+                                        <div  id="result-i-t" class="inner-title">
+                                            <p>Results</p>
+                                            <p>>></p>
+                                        </div>
+
+
+                                    </div>
+                                </a>
+
+
+
+
+
+
+                            </div>
+
+                            <div class="exam-routines">
+                                <a href="{% url 'view_routine' %}">
+                                    <div  class="title">
+                                        <div  class="inner-title">
+                                            <p>Exam Routines</p>
+                                            <p>>></p>
+                                        </div>
+
+
+                                    </div>
+                                </a>
+
+
+
+
+
+                            </div>
+                            <div class="exam-routines">
+                                <a href="{% url 'view_class_routine' %}">
+                                    <div  class="title">
+                                        <div  class="inner-title">
+                                            <p>Class Routines</p>
+                                            <p>>></p>
+                                        </div>
+
+
+                                    </div>
+                                </a>
+
+
+                            </div>
+
+                            <div class="exam-routines">
+                                <div onclick="routineF()" class="title">
+                                    <div onclick="ebg()" id="exam-i-t" class="inner-title">
+                                        <p>Fee system</p>
+                                        <p>>></p>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                                <div id="e-semesters"  class="semesters">
+                                    <div class="r-s-c">
+                                        <ul>
+
+                                            <li><a href="{% url 'semester_home' %}">Semester Fee </a> <p>>></p> </li>
+                                            <li><a href="{% url 'hostel_home' %}">Hostel Fee </a> <p>>></p> </li>
+                                            <li><a href="{% url 'registration_home' %}">Form Fill Up Fee </a> <p>>></p> </li>
+                                            <li><a href="{% url 'midterm_home' %}">Midterm Fee </a> <p>>></p> </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="exam-routines">
+                                <a href="{% url 'view_transaction_history_student' request.user.id %}">
+                                    <div  class="title">
+                                        <div  class="inner-title">
+                                            <p>Transaction History</p>
+                                            <p>>></p>
+                                        </div>
+
+
+                                    </div>
+                                </a>
+
+
+                            </div>
+
+
+                            <a href="/logout/">
+                                <div class="inner-title">
+                                    
+                                    <p>Logout</p>
+                                    <p>>></p>
+                
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+        
+        </div>
+    </header>
+
+
+    <div class="container">
+
+        {% block container_left %}
+        {% endblock container_left %}
+
+
+        {% block container_main_body %}
+
+        {% endblock container_main_body %}
+
+
+
+        {% block container_right %}
+<!--            <div class="right">
+                """I've commented this section because advertisement for a educational web site is not a good idea.
+                   Any way if need this section we can use it in future for college advertisement example any kind of
+                   college course banner or event."""
+
+-->
+
+
+<!--                <div class="right-side">-->
+<!--                    <small>Advertisement</small>-->
+<!--                    <a href="#">-->
+<!--                        <img src="{% static 'post/images/Smooth-the-Fruit-Ad-Poster-Download.jpg' %}" alt="Advartistment">-->
+<!--                    </a>-->
+<!--                </div>-->
+
+<!--            </div>-->
+        {% endblock container_right %}
+    </div>
+
+
+
+
+</body>
+</html>

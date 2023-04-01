@@ -1,0 +1,218 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+{% block title %} <title>Upload Result sheet</title> {% endblock title %}
+
+{% block cssfile %}<link rel="stylesheet" href="{% static 'post/css/create.css' %}">{% endblock cssfile %}
+{% block cssfile2 %}<link rel="stylesheet" href="{% static 'post/css/result.css' %}"> {% endblock cssfile2 %}
+ {% block js_file %}
+    {% if msg == True %}
+        <script>
+            alert("Result File Already Exist. If you want to edit something go to Tabulation dashboard select E.Result")
+
+        </script>
+    {% endif %}
+{% endblock js_file %}
+
+
+{% block container_left %}
+
+    {% include 'collegeSystem/profile-left-section-nav.html' %}
+
+{% endblock container_left %}
+
+
+{% block container_main_body %}
+    <div class="main-body">
+
+                
+        <div class="main">
+            <div class="back-btn">
+                
+                <div class="btn" onclick="history.back()">
+                    <p>Back</p>
+                </div>
+                
+            </div>
+
+
+            <div class="create-post-body">
+
+                <div class="create-post-head">
+
+                    <div class="profile">
+                        <a href="#">
+                            <img src="{{request.user.profile.image.url}} " alt="">
+                        </a>
+
+                        <div class="profile-texts">
+                            <div class="p-t-left">
+                                <a href="#">
+                                    <p class="u-name">{{request.user.name}}</p>
+                                </a>
+                                <small>Now</small>
+                            </div>
+                            
+                            <p class="category"> <a href="#">Teacher</a></p>
+                        </div>
+                    </div>
+
+                    <div class="opitons">
+
+                        <div onclick="odots()" class="dots">
+                            <img src="{% static 'post/images/tree dots.svg' %}" alt="">
+                        </div>
+
+                        
+
+                    </div>
+
+                </div>
+
+                <form method="POST"  onsubmit="loader('submit-text-u-result-sheet-r','content-loader-u-r-s-r', 'upload-result-submit-btn' )"  enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+                    <div class="select-semester-option s-s-ur ">
+                            <div class="label" style="margin-top:0;">
+                                Exam year :
+                            </div>
+
+                            <div class="s-semester  s-s-ur" >
+                                <select name="exam_year" >
+                                        <option value="">--------</option>
+                                    {% for year in year_list %}
+                                        <option value="{{year}}">{{year}}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+
+                    </div>
+
+                    <div class="select-semester-option  s-s-o2">
+                            <div class="label">
+                                Started :
+                            </div>
+
+                            <div class="s-semester s-s-b-n s-s-ur">
+                                <input type="date" name="started">
+
+                            </div>
+
+
+                    </div>
+
+                    <div class="select-semester-option  s-s-o2">
+                            <div class="label">
+                                Ended :
+                            </div>
+
+                            <div class="s-semester s-s-b-n s-s-ur">
+                                <input type="date" name="ended">
+
+                            </div>
+
+
+                    </div>
+
+                     <div class="select-semester-option s-s-o2">
+                            <div class="label">
+                                Exam :
+                            </div>
+
+                            <div class="s-semester s-s-ur">
+                                {{form.exam}}
+
+                            </div>
+
+                    </div>
+                    <div class="select-semester-option s-s-o2">
+                            <div class="label">
+                                Session :
+                            </div>
+
+                            <div class="s-semester s-s-ur">
+                                <select name="session" >
+                                        <option value="">--------</option>
+                                    {% for year in session_year_list %}
+                                        <option value="{{year}}">{{year}}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                    </div>
+
+
+                    <div class="select-semester-option s-s-o2">
+                            <div class="label">
+                                Department :
+                            </div>
+
+                            <div class="s-semester s-s-ur">
+                                {{form.department}}
+
+                            </div>
+
+
+                    </div>
+                    <div class="select-semester-option  s-s-o2 ">
+                        <div class="label s-label">
+                            Semester :
+                        </div>
+
+                        <div class="s-semester s-s-ur">
+                            {{form.which_semester}}
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="select-semester-option  s-s-o2 ">
+                        <div class="label s-label">
+                            CSV File :
+                        </div>
+
+                        <div class="s-semester s-s-ur">
+                            {{form.file}}
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="btns">
+
+                        <a class="btn cancel" onclick="history.back()">Cancel</a>
+
+                        <button id="upload-result-submit-btn" class="btn post"  type="submit">
+                            <p id="submit-text-u-result-sheet-r">Upload</p>
+
+                            <div id="content-loader-u-r-s-r" class="content-loader d-none">
+                                <div id="loader-d-c-u-r-s" class="loader "></div>
+                            </div>
+                        </button>
+                    </div>
+                    <script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                </script>
+                </form>
+
+            
+
+
+            
+            </div>
+        </div>
+
+
+    </div>
+{% endblock container_main_body %}
+

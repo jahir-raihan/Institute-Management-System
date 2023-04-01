@@ -1,0 +1,49 @@
+{% load static %}
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Upload Deafen List</p>
+
+                            </div>
+                            <div style="width:180px;" class="line"></div>
+
+
+                        </div>
+                        <form id="d-l-form-ajax"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                <small style="color:#172577;" class="confirm-text">**Authentication complete . Upload List.</small>
+
+
+
+                                <div class="select-semester-option  s-s-o2 ">
+                                    <div class="label s-label">
+                                        CSV File :
+                                    </div>
+
+                                    <div class="s-semester s-s-ur">
+                                        <input type="file" name="file" id="deafen-file">
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="search-bottom">
+
+                                <button id="d-l-btn" class=""  type="submit">
+                                    <p id="submit-text-d-l">Upload List</p>
+
+                                    <div id="content-loader-d-l" class="content-loader d-none">
+                                        <div id="loader-d-c-d-l" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+

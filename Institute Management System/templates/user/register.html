@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'user/css/register.css' %}">
+    <title>Register</title>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+</head>
+<body>
+    {% if msg %}
+        <div class="error">
+            <p>{{error}}</p>
+        </div>
+    {% endif %}
+    <div class="container">
+
+        <div class="main">
+
+            <div class="form-body">
+               <div class="logo-body">
+                    <div class="logo">
+                        <img src="{% static 'post/images/logo-cpi.png' %}" alt="">
+                    </div>
+                    <div class="logo-text">Compact Polytechnic Institute</div>
+
+
+                </div>
+                <div class="heading">
+                    <p >Register</p>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="email-input">
+                        <input type="text" placeholder="Full Name " required name="name">
+                    </div>
+                     <div class="email-input">
+                        <input type="text" placeholder="Mother Name " required name="mother">
+                    </div>
+                     <div class="email-input">
+                        <input type="text" placeholder="Father Name " required name="father">
+                    </div>
+                    <div class="email-input">
+                        <input type="email" placeholder="Email " required name="email">
+                    </div>
+                    <div class="email-input">
+                        <input type="number" placeholder="Phone " required name="phone">
+                    </div>
+                    <div class="email-input">
+                        <input type="number" placeholder="Roll " required name="roll">
+                    </div>
+                    <div class="email-input">
+                        <input type="number" placeholder="Registration " required name="registration">
+                    </div>
+                    <div class="email-input option-section">
+                        <span class="span-class">Session : </span>
+                        <select name="session" id="id_session" required >
+                            <option value="">--------</option>
+                            {% for year in session_year_list %}
+                                <option value="{{year}}">{{year}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="email-input option-section">
+                        <span class="span-class">Department : </span>{{form.department}}
+                    </div>
+                    <div class="email-input option-section">
+                        <span class="span-class">Semester : </span>{{form.semester}}
+                    </div>
+                    <div class="email-input option-section">
+                        <span class="span-class">Gender : </span>{{form.gender}}
+                    </div>
+                    <div class="email-input option-section">
+                        <span class="span-class">Religion : </span>{{form.religion}}
+                    </div>
+                    <div class="email-input">
+                        <input type="password" placeholder="Password" required name="password1">
+                    </div>
+
+                    <div class="email-input">
+                       <input type="password" placeholder="Confirm Password" required name="password2">
+                    </div>
+
+                    <div class="email-input">
+                        <span class="span-class"> Image :</span> <input id="image-field" type="file" required placeholder="Upload you Image" name="image">
+                    </div>
+
+
+
+                    <button type="submit">Register</button>
+                 <script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                </script>
+                </form>
+
+                <div class="bottom">
+                    <p>Already have an account ?</p>
+                    <a style="color:#172577;margin-top:.5em;display:block;" href="{% url 'login' %}">Login Now</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

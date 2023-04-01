@@ -1,0 +1,431 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+{% load auth_extras %}
+{% block cssfile1 %} <link rel="stylesheet" href="{% static 'dashboard/css/transaction.css' %}"> {% endblock cssfile1 %}
+{% block cssfile2 %}<link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}"> {% endblock cssfile3 %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'post/css/create.css' %}"> {% endblock cssfile %}
+{% block cssfile4 %} <link rel="stylesheet" href="{% static 'hostel/css/hostel.css' %}"> {% endblock cssfile4 %}
+
+{% block js_file %}<script src="{% static 'user/js/user.js' %}"></script> {% endblock js_file %}
+{% block js_file1 %}<script src="{% static 'dashboard/js/transaction.js' %}"></script> {% endblock js_file1 %}
+{% block title %}
+<title>Dashboard | Accounting</title>
+{% endblock title %}
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+        <div class="main-body">
+
+            <div class="main" id="dashboard-main">
+                <div class="links">
+                    <button class='link-btn1 link-btn-trans active' btn_no="1" id="link-btn4">Transaction Home</button>
+                    <button class='link-btn2 link-btn-trans' btn_no="2" id="link-btn5">History</button>
+                    <button class='link-btn3 link-btn-trans' btn_no="3" id="link-btn6">Transaction Database</button>
+                </div>
+                    <div class="content-loader">
+                        <div id="loader-t-c-g-t" class="loader d-none"></div>
+                    </div>
+                <div class="dashboard-contents .create-post-body" id="transaction_contents">
+                    <div class="update-hostel-data">
+                        <p class="d-c-title-u-h-data">Make a custom Transaction :</p>
+                        <button class="d-c-btn" onclick="on_universal('overlay6')">Transaction Form</button>
+                    </div>
+                    <div class="line"></div>
+                    <p class="d-c-title">Query Transactions/</p>
+
+                    <form id="search-transactions-form">
+                    <div class="search-add-bar">
+
+                            {% csrf_token %}
+                            <div class="input">
+                                <input type="text" id="keyword" placeholder="Query  Transactions . . ." name="keyword">
+                            </div>
+
+
+                        <button type="submit" class="add-btn search-btn">Search</button>
+
+
+                    </div>
+                    </form>
+
+                    <div class="hostel-students" id="transaction-recipients">
+                        {% for transaction in transactions %}
+
+                                <div class="h-student">
+                                    <a target="_blank" style="color:unset;" href="{% url 'view_transaction' transaction.receipt_id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+                                            {% if transaction.recipient_student %}
+                                                <img src="{{transaction.recipient_student.profile.image.url}}" alt="{{transaction.recipient}} Image">
+                                            {% else %}
+                                                <img src="{% static 'post/images/download.png' %}" alt="anonymous user">
+                                            {% endif %}
+                                        </div>
+                                        <div >
+                                            <small style="font-size:15px;"><span>Recipient  :</span> {{transaction.recipient}}</small>
+                                            <small class="paid-unpaid"><span>Type :</span> {{transaction.transaction_type}}</small>
+
+
+                                                <small><span>Receipt No :</span> {{transaction.custom_receipt_id}}</small>
+                                                <small><span>Transaction ID :</span> {{transaction.receipt_id}}</small>
+                                                <small><span>Amount :</span> {{transaction.total_amount}} TK</small>
+
+
+                                                <small><span>Due Date :</span> {{transaction.date}}</small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div onclick="s_odots({{student.student.id}})" class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div id='toggle-option{{transaction.id}}' class="option-toggle">
+                                    <a href="#">view profile</a>
+
+                                </div>
+
+                            </div>
+
+                                </div>
+
+                        {% endfor %}
+
+
+
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div id="overlay6" >
+
+                <div class="search-student-data create-post-body" id="search-student-data-c-trans">
+                    <div class="search-top">
+
+
+                        <div class="s-top-titles">
+                            <p class="college-name">Transaction</p>
+                            <p class="info" style="text-transform:normal !important; font-size:13px;">Query Student Arrears Data</p>
+
+                        </div>
+                        <div class="line" style="width:230px"></div>
+
+
+                    </div>
+                    <div id="s-tab-body-q-s-c-trans">
+                    <form id="query-student-data-c-trans" >
+                        {% csrf_token %}
+                        <div class="search-middle">
+
+                             <div class="input" style="justify-content:unset !important;">
+                                    <span style="margin-right:1em;">Roll :</span> <input required style="width:250px" name="roll" id="roll" placeholder="Enter roll number . . ."  type="number">
+                             </div>
+
+
+
+
+
+                        </div>
+
+                       <div class="search-bottom">
+
+                            <button style="width:120px;" id="query-student-custom-transaction" class=""  type="submit">
+                                <p id="submit-text-q-s-c-trans">Query Data</p>
+
+                                <div id="content-loader-q-s-c-tra" class="content-loader d-none">
+                                    <div id="loader-t-q-s-custom-trans" class="loader "></div>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div id="query-student-c-trans-data">
+
+                        </div>
+
+
+                    </form>
+                    </div>
+                </div>
+
+                <div class="overlay-content" style="margin-left:8em">
+
+                    <div class="create-post-body overlay-body" id="overlay-body-make-c-trans" style="position:relative">
+                        {% csrf_token %}
+                        <button class="refresh-btn" id="refresh-btn" onclick="location_reload()" title="Refresh">Refresh</button>
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Make a Transaction</p>
+
+                            </div>
+                            <div style="width:201px;" class="line"></div>
+
+
+                        </div>
+                        <form  id="create-custom-transaction-form">
+                            {% csrf_token %}
+                            <div class="search-middle" id="trans-home-m-t-f">
+                                    <small class="confirm-text">**If recipient is not a student  leave roll blank.</small>
+                                    <div class="input">
+                                        <span>Recipient :</span> <input name="recipient" placeholder="Enter full name . . ."  type="text">
+                                    </div>
+                                   <div class="input">
+                                        <span>Email :</span> <input name="email" placeholder="Enter valid email . . ." type="email">
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Roll :</span> <input name="roll" placeholder="Enter roll number . . ." type="number">
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Type:</span>
+                                        <div class="select-dashboard">
+                                            <select name="transaction_type" required>
+                                                <option value="Cash In">Cash In</option>
+                                                <option value="Cash Out">Cash Out</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <small class="confirm-text">**If transaction reason is multiple click "Add New" btn.</small>
+
+                                    <div class="input" id="for-other-selection">
+                                        <span>Desc of fee:</span>
+                                        <div class="select-dashboard custom-transaction-select" id="custom-transaction-select">
+                                            {{ form.transaction_reason }}
+                                        </div>
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Amount  :</span> <input name="amount" required placeholder="Enter amount . . ." type="number">
+                                    </div>
+                                    {% csrf_token %}
+                                    <a id="add-new-node-btn" style="background:#FFA25D; color:white !important;" class="btn" onclick="add_new_node()">Add New Reason</a>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+
+                                <button style="width:120px;" id="create-custom-transaction" class=""  type="submit">
+                                    <p id="submit-text-c-c-trans">Create Receipt</p>
+
+                                    <div id="content-loader-c-c-tra" class="content-loader d-none">
+                                        <div id="loader-t-c-c-custom-trans" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay6')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="3"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="3"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+            <div id="overlay_statement" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-get-statement">
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Statements</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="statement_filter">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                <small class="confirm-text">**Get Statements</small>
+
+                                <div class="input">
+                                    <span>Session :</span>
+                                    <div class="select-dashboard">
+                                         <select name="session" required >
+                                            <option value="">--------</option>
+                                            {% for year in session_year_list %}
+                                                <option value="{{year}}">{{year}}</option>
+                                            {% endfor %}
+                                         </select>
+                                    </div>
+                                </div>
+                                <div class="input">
+                                    <span>Semester :</span>
+                                    <div class="select-dashboard">
+                                        {{form2.semester}}
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <span>Department :</span>
+                                    <div class="select-dashboard">
+                                        {{ form2.department }}
+                                    </div>
+                                </div>
+                                <small class="confirm-text">**Optional</small>
+                                <div class="input">
+                                    <span>Filter Type :</span>
+                                    <div class="select-dashboard">
+                                        <select name="filter_type">
+                                            <option value="">--------</option>
+
+                                            <option value="Mid Term Fee">Mid Term Fee</option>
+                                            <option value="Semester Fee">Semester Fee</option>
+                                            <option value="Form Fill Up Fee">Form Fill Up Fee</option>
+
+
+                                         </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="search_statement_btn" class=""  type="submit">
+                                    <p id="submit-text-search-statement">Search</p>
+
+                                    <div id="content-loader-search-statement" class="content-loader d-none">
+                                        <div id="loader-d-c-search-statement" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay_statement')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+            <div id="overlay_transaction_statement" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-transaction-statement">
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Generate Statement</p>
+
+                            </div>
+                            <div style="width:200px;" class="line"></div>
+
+
+                        </div>
+                        <form id="transaction-statement">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                <small class="confirm-text">**Generate Statement</small>
+
+                                <div class="input">
+                                    <span>Time Range :</span>
+                                    <div class="select-dashboard">
+                                         <select name="time_range" required >
+                                            <option value="">--------</option>
+
+                                                <option value="today">Today</option>
+                                                <option value="this_month">This Month</option>
+                                                <option value="this_year">This Year</option>
+                                                <option value="last_five_year">Last Five Years</option>
+                                                <option value="all_time">All Time</option>
+
+                                         </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="search_trans_statement_btn" class=""  type="submit">
+                                    <p id="submit-text-search-trans-statement">Generate</p>
+
+                                    <div id="content-loader-search-trans-statement" class="content-loader d-none">
+                                        <div id="loader-d-c-search-trans-statement" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay_transaction_statement')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+
+        </div>
+
+    <div class="print-btn p-b-1" id="trans_statement_button">
+        <button onclick="on_universal('overlay_statement')">Fee Statement</button>
+    </div>
+    <div class="print-btn print-btn2" id="get_transaction_statement_button">
+        <button onclick="on_universal('overlay_transaction_statement')">Accounting Statement</button>
+    </div>
+    {% endblock container_main_body %}
+
+    {% block container_right %}
+    {% endblock container_right %}

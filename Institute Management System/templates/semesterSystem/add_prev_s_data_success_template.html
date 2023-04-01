@@ -1,0 +1,15 @@
+{% load static %}
+{% csrf_token %}
+ <button class="refresh-btn" id="refresh-btn" onclick="s_location_reload()" title="Refresh">Refresh</button>
+{% if error %}
+    <small style="color:black; text-align:center;margin-top:2em;" class="confirm-text">{{msg}}</small>
+{% else %}
+    <small style="color:black; text-align:center;margin-top:2em;" class="confirm-text">{{msg}}</small>
+    <div class="search-bottom">
+
+       <button style="width:120px;" onclick="s_location_reload()">Add Another</button>
+    </div>
+
+{% endif %}
+
+

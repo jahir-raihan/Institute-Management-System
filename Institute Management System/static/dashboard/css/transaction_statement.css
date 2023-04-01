@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins';
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 2em auto;
+  margin-top: 1.5em;
+
+
+  padding: 1em;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom:5em;
+}
+
+th, td {
+  border: 1px solid black;
+  text-align: center;
+  font-size:13px;
+}
+
+th {
+  padding: .5em;
+}
+
+td {
+  padding: .3em .8em;
+  max-height: 40px !important;
+}
+
+.t-r {
+  width: 350px;
+}
+
+
+
+.header {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.header .title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header p {
+  text-align: center;
+}
+
+span {
+  font-weight: bold;
+}
+
+.breaker {
+  border: none;
+}
+
+.t-c-a {
+  text-align: right;
+  padding-right: 1em;
+}
+
+.f-b {
+  font-weight: bold;
+  height: 30px !important;
+}
+
+.go-down-body {
+  position: relative;
+}
+
+.go-down-body .go-down {
+  position: absolute;
+  top: 10px;
+  right: 100px;
+}
+
+.go-down {
+  background: #7cf8ee;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+
+.go-down img {
+  width: 40px;
+  padding-left: .65em;
+  padding-top: .7em;
+  border-radius: 50%;
+  background-position: center;
+}
+
+.go-up-body {
+  position: relative;
+}
+
+.go-up-body .go-down {
+  position: absolute;
+  bottom: 40px;
+  right: 100px;
+}
+
+.go-up-body .go-down img {
+  padding-top: .5em;
+}
+
+
+
+/*# sourceMappingURL=transaction_statement.css.map */

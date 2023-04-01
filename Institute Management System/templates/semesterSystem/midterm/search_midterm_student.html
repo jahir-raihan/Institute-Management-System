@@ -1,0 +1,70 @@
+                         <div class="update-hostel-data">
+                            <p class="d-c-title-u-h-data">Update Mid Term Fee Data :</p>
+                            <button style="border:none" class="d-c-btn" onclick="on_universal('overlay_mid')">Update </button>
+                        </div>
+                        <div class="line"></div>
+
+                        <form id="search-midterm-students">
+                        <div class="search-add-bar">
+
+                                {% csrf_token %}
+                                <div class="input">
+                                    <input type="text" id="keyword" placeholder="Query  students . . ." name="keyword">
+                                </div>
+
+
+                            <button type="submit"  class="add-btn search-btn">Search</button>
+
+
+                        </div>
+                        </form>
+
+
+                        <div class="hostel-students">
+                        {% for student in students %}
+
+                                <div class="h-student">
+                                    <a style="color:unset;" href="{% url 'update_midterm_fee' student.id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+                                            <img src="{{ student.student.profile.image.url }}" alt="">
+                                        </div>
+                                        <div >
+                                            <p class="name">{{student.student.name}}</p>
+                                            <small class="paid-unpaid"><span>Status :</span> {{student.status}}</small>
+
+
+
+                                                <small><span>Roll :</span> {{student.student.roll}}</small>
+                                                <small><span>Semester :</span> {{student.semester}}</small>
+
+
+                                                <small><span>Department :</span> {{student.student.department}}</small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div onclick="re_odots({{student.id}})" class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div id='toggle-option{{student.student.id}}' class="option-toggle">
+                                    <a href="{% url 'profile' student.student.id %}">view profile</a>
+
+                                </div>
+
+                            </div>
+
+                                </div>
+
+                        {% endfor %}
+
+
+
+                    </div>

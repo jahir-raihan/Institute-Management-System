@@ -1,0 +1,36 @@
+{% load static %}
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Hostel Data</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="u-hostel-form-ajax"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small style="color:#172577;" class="confirm-text">**Authentication complete . Press the button to Update.</small>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="update-hostel-btn" class=""  type="submit">
+                                    <p id="submit-text-u-hostel-submit-r">Update</p>
+
+                                    <div id="content-loader-u-h-submit-r" class="content-loader d-none">
+                                        <div id="loader-d-c-u-h-submit" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+

@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'dashboard/css/bokeya_sheet.css' %}">
+    <title>Arrears Sheet</title>
+    <script>
+        function window_print(){
+            var element = document.getElementById('print_btn_tra');
+            var ele = document.getElementById('instruction');
+            element.style.display = 'none';
+            ele.style.display = 'none';
+            window.print();
+            element.style.display = 'block';
+            ele.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heading">
+            <h2>{{clg_name}}</h2>
+            <p class="address">{{clg_address}}</p>
+            <p class="address">Institute Code: {{clg_code}}</p>
+            <h3>{{department}} {{semester}} semester ({{session}})</h3>
+        </div>
+
+        <div class="table">
+            <table>
+                <tr class="heading-class">
+                    <th class="s-n" rowspan="3">SL.NO</th>
+                    <th rowspan="3" class="s-names">Students Name</th>
+                    <th class="roll-no" rowspan="3">Roll No</th>
+                    <th colspan="{{s1}}">Semester Fee</th>
+
+                    <th class="roll-no" rowspan="3">Fine</th>
+                    <th class="roll-no2" rowspan="3">Total Arrears</th>
+                    <th rowspan="3" class="roll-no">Status</th>
+                    
+                </tr>
+
+                <tr>
+                    <th colspan="{{s}}">Previous Arrears</th>
+                    <td class="roll-no" rowspan="2">Current Arrears</td>
+                </tr>
+                <tr>
+                    {% for semester in get_semester %}
+                        <td class="roll-no">{{semester}}</td>
+                    {% endfor %}
+
+
+                    
+                    
+                </tr>
+
+                {% for d in data %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{d.name | title}}</td>
+                        <td>{{d.roll}}</td>
+                        {% for sub_d in d.subcontainerarrears_set.all|dictsort:'semester' %}
+                            {% if sub_d.total_amount == 'F.P' %}
+                                <td>{{sub_d.total_amount}}</td>
+                            {% else %}
+                                <td>{{sub_d.total_amount}} TK</td>
+                            {% endif %}
+
+                        {% endfor %}
+
+
+
+                        <td>{{d.current}} TK</td>
+                        <td>&nbsp;</td>
+                        <td>{{d.total}} TK</td>
+
+                        {% if d.total == 0 %}
+                            <td>Full Paid</td>
+                        {% else %}
+                            <td> Unpaid</td>
+                        {% endif %}
+
+
+
+                    </tr>
+                    {% if forloop.counter == 17 or forloop.counter == 43 or forloop.counter == 69 or forloop.counter == 94 or forloop.counter == 119 or forloop.counter == 144 or forloop.counter == 169 or forloop.counter == 194 or forloop.counter == 219 or forloop.counter == 244 or forloop.counter == 269 or forloop.counter == 294 %}
+                        <tr class="breaker">
+                            <td class="b-td" colspan="13">&nbsp;</td>
+                        </tr>
+                        <tr class="breaker">
+                            <td class="b-td" colspan="13">&nbsp;</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+
+
+
+
+         
+            </table>
+        </div>
+    </div>
+    <div class="print-btn" id="print_btn_tra">
+        <button onclick="window_print()">print</button>
+    </div>
+    <div class="instruction ins2" id="instruction">
+            <small  >Instructions for printing/saving as PDF</small>
+            <table>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Layout</td>
+                    <td>Landscape</td>
+                </tr>
+                <tr>
+                    <td>Paper Size</td>
+                    <td>A4</td>
+                </tr>
+
+
+                <tr>
+                    <th>Finally</th>
+                    <th>Save</th>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>

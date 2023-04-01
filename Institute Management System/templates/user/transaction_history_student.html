@@ -1,0 +1,111 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+{% load auth_extras %}
+{% block cssfile1 %} <link rel="stylesheet" href="{% static 'dashboard/css/transaction.css' %}"> {% endblock cssfile1 %}
+{% block cssfile2 %}<link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}"> {% endblock cssfile3 %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'post/css/create.css' %}"> {% endblock cssfile %}
+{% block cssfile4 %} <link rel="stylesheet" href="{% static 'hostel/css/hostel.css' %}"> {% endblock cssfile4 %}
+
+{% block js_file %}<script src="{% static 'user/js/user.js' %}"></script> {% endblock js_file %}
+{% block js_file1 %}<script src="{% static 'dashboard/js/transaction.js' %}"></script> {% endblock js_file1 %}
+{% block title %}
+<title>Transaction History | {{request.user}}</title>
+{% endblock title %}
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+        <div class="main-body">
+
+            <div class="main" id="dashboard-main">
+
+                <div class="back-btn">
+                    <div class="btn" onclick="history.back()">
+                        <p>Back</p>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-contents .create-post-body" id="transaction_contents">
+
+                    <form id="search-transaction-student-option">
+                    <div class="search-add-bar">
+
+                            {% csrf_token %}
+                            <div class="input">
+                                <input type="number" id="receipt_no"  placeholder="Enter Receipt No . . ." name="receipt_no">
+                            </div>
+
+
+                        <button type="submit" class="add-btn search-btn">Search</button>
+
+
+                    </div>
+                    </form>
+
+                    <p class="d-c-title">Transaction History/</p>
+
+
+
+                    <div class="hostel-students" id="transaction-list-student-option">
+                        {% for transaction in transactions %}
+
+                                <div class="h-student">
+                                    <a target="_blank" style="color:unset;" href="{% url 'view_transaction' transaction.receipt_id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+
+                                                <img src="{{transaction.recipient_student.profile.image.url}}" alt="{{transaction.recipient}} Image">
+
+                                        </div>
+                                        <div >
+                                            <small style="font-size:15px;"><span>Recipient  :</span> {{transaction.recipient}}</small>
+
+
+
+                                            <small><span>Receipt No :</span> {{transaction.custom_receipt_id}}</small>
+                                            <small><span>Transaction ID :</span> {{transaction.receipt_id}}</small>
+                                            <small><span>Amount :</span> {{transaction.total_amount}} TK</small>
+
+
+                                            <small><span>Due Date :</span> {{transaction.date}}</small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div  class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+
+
+                            </div>
+
+                                </div>
+
+                        {% endfor %}
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+    {% endblock container_main_body %}
+

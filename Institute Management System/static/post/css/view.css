@@ -1,0 +1,141 @@
+.container {
+  max-width: 1500px;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 24% 48% 24%;
+      grid-template-columns: 24% 48% 24%;
+  gap: 1.5%;
+}
+
+.main {
+  margin-top: 2em;
+}
+
+.comments-section {
+  margin-top: 1.2em;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.47);
+}
+
+.comments-section .allcomment {
+  text-align: center;
+  margin-top: .6em;
+}
+
+.comments-section .allcomment small {
+  color: black;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.511);
+  font-size: 10px;
+}
+
+
+
+.comment-body {
+  padding-bottom: 1.4em;
+}
+.time-commented{
+  font-size:10px;
+}
+
+@media only screen and (max-width: 955px) {
+  .right {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-right {
+    display: none !important;
+  }
+  .toggle {
+    display: unset;
+  }
+  .left {
+    display: none;
+    height: 0 !important;
+  }
+  .ham-bar {
+    margin-bottom: .2em;
+  }
+  .right {
+    display: none;
+  }
+  .container {
+    display: unset !important;
+  }
+  .main {
+    width: 90%;
+    margin: 1em auto;
+  }
+  .main .back-btn {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .post-body {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  .back-btn {
+    max-width: unset !important;
+    min-width: unset !important;
+  }
+  .write-comment input {
+    width: 60%;
+  }
+  .write-comment .comment-btn {
+    border-radius: 15px !important;
+    width: 30%;
+  }
+  .write-comment p {
+    padding-top: .2em;
+    font-size: 11px !important;
+  }
+  .write-post {
+    width: 100% !important;
+  }
+  .main {
+    width: 95% !important;
+  }
+  .option-toggle {
+    margin-left: unset !important;
+    position: absolute !important;
+    right: 10px;
+  }
+  .post-head {
+    margin-bottom: .5em;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .write-post .input {
+    width: 95%;
+    margin-left: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 290px) {
+  .logo-text {
+    font-size: .8em !important;
+  }
+  .ham {
+    width: 20px !important;
+    margin-top: .3em !important;
+  }
+  .comment-btn p {
+    font-size: 10px !important;
+  }
+  .profile .u-name {
+    font-size: .8em !important;
+  }
+  .profile .category {
+    font-size: .6em !important;
+  }
+  .comment-right .u-name {
+    font-size: .8em !important;
+  }
+  .write-comment input {
+    font-size: .7em !important;
+  }
+}

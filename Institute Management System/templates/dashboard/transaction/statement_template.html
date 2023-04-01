@@ -1,0 +1,39 @@
+{% load static %}
+{% csrf_token %}
+    {% if found %}
+    <style>
+        .tab-btn {
+          margin-top:1em !important;
+          cursor: pointer;
+
+          background: #172577 !important;
+          color: white ;
+          border: none;
+          letter-spacing: 1px;
+          border-radius: 4px;
+
+
+          width: 190px !important;
+
+
+          margin-top:1em;
+          padding-left:.5em;
+          padding-right:.5em;
+          height: 30px !important;
+
+        }
+
+    </style>
+    <div class="search-middle" style="text-align:center;">
+
+
+        <p style="color:#172577;"> Statement Found.</p>
+
+        <a target="_blank" href="{% url path_name id %}"><button type='submit' class="tab-btn"> view </button></a>
+
+
+
+        {% else %}
+            <p style="color:#172577; padding:2em 0;  text-align:center;"> Statement Not Found.</p>
+        {% endif %}
+    </div>

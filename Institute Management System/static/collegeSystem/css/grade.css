@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+  }
+
+  .container {
+    padding: 1em 0;
+    width: 700px;
+    margin: auto;
+    padding-left:25px;
+  }
+
+  .container p {
+    font-size: 14px;
+  }
+
+  .container .semester-details {
+    text-align: center;
+    padding-right:2em; /* This is an extra statement for making the mark sheet centred */
+    text-transform: uppercase;
+
+  }
+
+  .container .student-info {
+    margin: 1.5em 0;
+  }
+
+  .container .student-info P {
+    font-size: 14px;
+
+  }
+  .upper{
+      text-transform: uppercase;
+  }
+  .container .student-info .s-info-col {
+    margin-bottom: .5em;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 30% 5% 55%;
+        grid-template-columns: 30% 5% 55%;
+  }
+
+  .container .grade-table {
+    position: relative;
+  }
+
+  .container .grade-table p {
+    font-size: 13px;
+  }
+
+  .container .grade-table .center {
+    padding-top: .7em;
+  }
+
+  .container .grade-table .grade-table-heading {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 7% 10% 25% 10% 13% 10% 10% 15%;
+        grid-template-columns: 7% 10% 25% 10% 13% 10% 10% 15%;
+  }
+
+  .container .grade-table .grade-table-heading div {
+    text-align: center;
+    border: 1px solid black;
+    border-right: none;
+  }
+
+  .container .grade-table .grades {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 7% 10% 25% 10% 13% 10% 10% 15%;
+        grid-template-columns: 7% 10% 25% 10% 13% 10% 10% 15%;
+  }
+
+  .container .grade-table .grades div {
+    text-align: center;
+    border: 1px solid black;
+    border-right: none;
+    border-top: none;
+  }
+
+  .b-r {
+    border-right: 1px solid black !important;
+  }
+
+  .n-b-b {
+    border-bottom: none !important;
+  }
+
+  .total-gpa-abs {
+    position: absolute;
+    right: 117px;
+    top: 53%;
+  }
+
+
+
+table .n-o-s{
+    width:170px;
+    text-align: center;
+}
+table{
+    font-size:13px ;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90% !important;
+}
+ td{
+    border:1px solid black;
+    height:28px;
+}
+.heading-row td{
+    text-align: center;
+
+
+
+}
+.s-l-no{
+    padding:.3em;
+}
+
+.row .s-l-no{
+    text-align: center;
+    padding:.6em;
+}
+.row .sub-code{
+    text-align: center;
+}
+.row .n-o-s{
+    text-align: left;
+    padding-left:.3em;
+}
+.row .f-m, .m-o, .l-g, .g-p{
+    text-align: center;
+}
+
+.print-btn button{
+    border:none;
+    background:#172577;
+    padding:.3em 2em;
+    color:white;
+    border-radius:2px;
+    cursor:pointer;
+
+
+
+}
+.print-btn{
+    width:fit-content;
+    margin:auto;
+    margin-top:2em;
+}
+
+
+.print-btn {
+  position: fixed;
+  right: -37px;
+  top: 100px;
+}
+
+.print-btn button {
+  cursor: pointer;
+  -webkit-box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.733);
+  box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.733);
+  background: #172577;
+  color: white;
+  border: none;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+}
+
+.instruction {
+  position: fixed;
+  background: white;
+  -webkit-box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.568);
+  box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.562);
+  z-index: 2;
+  padding: .5em;
+  padding-top:.3em;
+  border-radius: 2px;
+  top: 5px;
+  left: 5px;
+}
+.instruction table th, .instruction table td {
+  font-size: 10px !important;
+  width: 115px;
+}
+.instruction table th, .instruction table td{
+    border:1px solid black ;
+    text-align:center;
+
+}
+.instruction table th{
+    padding:.3em ;
+    font-size:12px !important;
+}
+
+
+.instruction small {
+  color: #ff8800;
+  display: block;
+  margin: .5em 0;
+}
+@media only screen and (max-width: 1250px) {
+  .instruction {
+    display: none !important;
+  }
+}
+/*# sourceMappingURL=grade.css.map */

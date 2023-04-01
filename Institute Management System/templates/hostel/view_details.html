@@ -1,0 +1,77 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block title %} <title id="hostel-title">Add to hostel
+</title>{% endblock title %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'hostel/css/hostel.css' %}">{% endblock cssfile %}
+{% block cssfile2 %} <link rel="stylesheet" href="{% static 'post/css/base.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}">{% endblock cssfile3 %}
+
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+
+        <div class="main-body">
+
+
+            <div class="main">
+                <div class="back-btn">
+
+                    <div class="btn" onclick="history.back()">
+                        <p>Back</p>
+                    </div>
+
+                </div>
+
+                {% if message %}
+                    <div class="message">Added {{user_created}} to hostel successfully</div>
+                {% endif %}
+                <div class="create-post-body">
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="student-detail">
+                        <div class="s-d-left">
+                            <img src="{{student.profile.image.url}}" alt="">
+                        </div>
+
+                        <div class="s-d-right">
+                            <p class="name">{{student.name}}</p>
+                            
+
+                            
+                            <p><span>Roll : </span> {{student.roll}}</p>
+                            <p><span>Registration : </span> {{student.registration}}</p>
+                            <p><span>Semester : </span> {{student.semester}}</p>
+                            <p><span>Department : </span> {{student.department}}</p>
+                           
+
+                            {% if student.in_hostel %}
+                                <button class="add-btn add-to-hostel-btn disabled" disabled>Add to hostel</button>
+                            {% else %}
+                                <button class="add-btn add-to-hostel-btn" name="student_id" value="{{student.id}}" >Add to hostel</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    </form>
+                    <script>
+                        if ( window.history.replaceState ) {
+                            window.history.replaceState( null, null, window.location.href );
+                        }
+                    </script>
+                    
+                    
+            
+                </div>
+            </div>
+        </div>
+    {% endblock container_main_body %}
+
+    {% block container_right %}
+    {% endblock container_right %}
+

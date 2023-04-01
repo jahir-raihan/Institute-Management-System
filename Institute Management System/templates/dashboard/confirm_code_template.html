@@ -1,0 +1,47 @@
+{% load static %}
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Confirmation</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="c-c-with-data-t-r-f"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small class="confirm-text">**Confirmation code has been sent to {{email|slice:':7'}}****com.</small>
+                                    <div class="input">
+                                        <span>Enter code :</span> <input required name="auth_code" placeholder="Enter code . . ."  type="password">
+                                    </div>
+                                    <div class="input">
+                                        <span > Select Image :</span> <input required class="image-input" id="image-field" type="file" placeholder="Upload you Image" name="image">
+                                    </div>
+
+                                    <input hidden type="text" value="{{form.name}}" name="name">
+                                    <input hidden type="text" value="{{form.education}}" name="education">
+                                    <input hidden type="number" value="{{form.phone}}" name="phone">
+                                    <input hidden type="email" value="{{email}}" name="email">
+                                    <input hidden type="text" value="{{role}}" name="role">
+
+
+                                    <input hidden type="password" value="{{form.password1}}" name="password1">
+                                    <input hidden type="password" value="{{form.password2}}" name="password2">
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button type="submit">Submit</button>
+                            </div>
+
+                        </form>
+
+
+

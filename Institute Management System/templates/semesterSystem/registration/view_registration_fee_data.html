@@ -1,0 +1,86 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block title %} <title id="hostel-title">Payment | Form Fill Up
+</title>{% endblock title %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'semesterSystem/css/semester.css' %}">{% endblock cssfile %}
+{% block cssfile2 %} <link rel="stylesheet" href="{% static 'post/css/base.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}">{% endblock cssfile3 %}
+{% block cssfile4 %} <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}"> {% endblock cssfile4 %}
+{% block js_file %} <script src="{% static 'semesterSystem/js/registration_mid_term.js' %}"></script>{% endblock js_file %}
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+
+
+
+        <div class="main-body">
+
+
+            <div class="main">
+                <div class="back-btn">
+                    <a onclick="history.back()">
+                    <div class="btn">
+                        <p>Back</p>
+                    </div></a>
+
+                </div>
+
+
+                <div class="create-post-body">
+
+                    <div class="student-detail" id="student-detail-registration">
+                        <div class="s-d-left">
+                            <img src="{{student.student.profile.image.url}}" alt="">
+                        </div>
+
+                        <div class="s-d-right">
+                            <p class="name">{{student.student.name | title}}</p>
+
+
+
+                            <p><span>Roll : </span> {{student.student.roll}}</p>
+                            <p><span>Registration : </span> {{student.student.registration}}</p>
+                            <p><span>Semester : </span> {{student.semester}}</p>
+                            <p><span>Department : </span> {{student.student.department}}</p>
+                            {% if disable_inputs %}
+                                <p><span>Total remaining  : </span> 0 TK</p>
+                            {% else %}
+                                <p><span>Total remaining  : </span> {{student.amount_to_pay}} TK</p>
+                            {% endif %}
+
+                           {% if request.user.is_admin or request.user.is_hostel_manager %}
+                                <form id="update-registration-fee-form"  registration_student_id="{{student.id}}">
+                                    {% csrf_token %}
+                                    <div class="update-fee-input" id="update-fee-input-registration">
+                                        {% if disable_inputs %}
+                                            <input type="number" id="amount" class=""  placeholder="Enter amount to pay . . ." disabled>
+                                            <button class="add-btn add-to-hostel-btn update-fee-btn disabled" type="submit" id="student" disabled value="{{student.id}}">Update</button>
+                                        {% else %}
+                                            <input type="number" id="amount" required  placeholder="Enter amount to pay . . ." >
+                                            <button class="add-btn add-to-hostel-btn update-fee-btn" type="submit" id="student"  value="{{student.id}}">Update</button>
+                                        {% endif %}
+                                    </div>
+                                    <div id="content-loader-u-r-fee" style="margin-top:2.95em;margin-right:14em;" class="content-loader d-none">
+                                        <div id="loader-u-r-fee" class="loader "></div>
+                                    </div>
+                                </form>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    {% endblock container_main_body %}
+    {% block container_right %}
+    {% endblock container_right %}

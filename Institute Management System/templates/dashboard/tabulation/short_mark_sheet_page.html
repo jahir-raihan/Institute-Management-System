@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>short mark sheet of {{up_file.exam|title}} department of {{up_file.department}} session {{up_file.session}}</title>
+     <script>
+        function window_print(){
+            var element = document.getElementById('print-btn-tab');
+            element.style.display = 'none';
+            window.print();
+            element.style.display = 'block';
+        }
+    </script>
+    <style>
+        .container{
+            width:500px;
+            margin:auto;
+            margin-top:2em;
+
+        }
+        table{
+            border-collapse: collapse;
+            width:fit-content;
+            margin:auto;
+
+        }
+        td, th{
+            padding:.5em ;
+            width:120px;
+            text-align: center;
+            border:1px solid black;
+        }
+        .print-btn {
+          position: fixed;
+          right: -37px;
+          top: 100px;
+        }
+
+        .print-btn button {
+          cursor: pointer;
+          -webkit-box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.733);
+          box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.733);
+          background: #172577;
+          color: white;
+          border: none;
+          letter-spacing: 1px;
+          border-radius: 8px;
+          -webkit-transform: rotate(-90deg);
+                  transform: rotate(-90deg);
+          border-bottom-left-radius: 0px;
+          border-bottom-right-radius: 0px;
+          width: 100px;
+          height: 30px;
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+     <div class="print-btn" id="print-btn-tab">
+        <button onclick="window_print()">Print</button>
+     </div>
+    <div class="container">
+        <table>
+            <tr>
+                <th>Roll</th>
+                <th>Grade</th>
+
+            </tr>
+            {% for result in up_file.result_set.all %}
+            <tr>
+                <td>{{result.roll}}</td>
+                <td>{{result.grade_char}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

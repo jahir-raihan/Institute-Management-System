@@ -1,0 +1,708 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dashboard/css/receipt1.css' %}">
+    <title>Receipt | {{rec.receipt_id}} </title>
+     <script>
+        function window_print(){
+            var element = document.getElementById('print_btn_tra');
+            element.style.display = 'none';
+            var ele = document.getElementById('instruction');
+            ele.style.display = 'none';
+            window.print();
+            ele.style.display = 'block';
+            element.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+
+    <div class="receipt">
+        <div class="r-container">
+
+
+            {% if error %}
+                {{error}}
+            {% endif %}
+            <div class="receipt-header">
+
+                <div class="r-header-info">
+
+                    <div class="r-h-left">
+                        <img src="{% static 'post/images/Logo.jpg' %}" alt="">
+                    </div>
+
+                    <div class="r-h-right">
+                        <h2>Affiliated by Bangladesh Technical Education Board</h2>
+                        <h1 >COMPACT POLYTECHNIC INSTITUTE (CPI)</h1>
+                        <p>Academy Road, Feni,www.cpifeni.edu.bd Mob.: 01849-147961,01551-117182</p>
+                    </div>
+
+                </div>
+                <p class="money-receipt-title">MONEY RECEIPT</p>
+
+                <div class="receipient-details">
+
+
+                    <div class="inputs">
+
+                        <div class="left">
+                            <div class="i-label1">
+                                <p>Receipt No :</p>
+                            </div>
+                            <div class="input">
+                                <div class="i-id1">
+                                    <p>{{rec.custom_receipt_id}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="right">
+                            <div class="left">
+                                <div class="i-label1">
+                                    <p>Date :</p>
+                                </div>
+                                <div class="input">
+                                    <div class="i-id4">
+                                        <p>{{rec.date}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="inputs">
+
+                        <div class="left">
+                            <div class="i-label1">
+                                <p>Student's Name :</p>
+                            </div>
+                            <div class="input">
+                                <div class="i-id2">
+                                    <p>{{rec.recipient}} </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="right">
+                            <div class="left">
+                                <div class="i-label1">
+                                    <p>Roll No :</p>
+                                </div>
+                                <div class="input">
+                                    <div class="i-id5">
+                                        {% if rec.student_roll %}
+                                            <p>{{rec.student_roll}}</p>
+                                        {% else %}
+                                            <p>&nbsp; </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="inputs">
+
+                        <div class="left">
+                            <div class="i-label1">
+                                <p>Group :</p>
+                            </div>
+                            <div class="input">
+                                <div class="i-id3">
+                                    {% if rec.department %}
+                                        <p>{{rec.department}}</p>
+                                    {% else %}
+                                        <p>&nbsp; </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="right">
+                            <div class="left">
+                                <div class="i-label1">
+                                    <p>Semester :</p>
+                                </div>
+                                <div class="input">
+                                    <div class="i-id6">
+                                        {% if rec.semester %}
+                                            <p>{{rec.semester}}</p>
+                                        {% else %}
+                                            <p>&nbsp; </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="receipt-body">
+
+                <div class="contents">
+
+                    <div class="r-body-header">
+
+                        <div class="r-body-header-row">
+
+                            <div class="r-one">
+                                <p>SN</p>
+                            </div>
+
+                            <div class="r-two">
+                                <p>DESCRIPTION OF FEE</p>
+                            </div>
+
+                            <div class="r-three">
+                                <p>AMOUNT</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if admissionfee %}
+                                    1 <div class="mark"> &check;</div>
+                                {% else %}
+                                    1
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Admission Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{admissionfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if admissionform %}
+                                    2 <div class="mark"> &check;</div>
+                                {% else %}
+                                    2
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Admission Form</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{admissionform}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if tuitionfee %}
+                                    3 <div class="mark"> &check;</div>
+                                {% else %}
+                                    3
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Tuition Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{tuitionfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if advance %}
+                                    4 <div class="mark"> &check;</div>
+                                {% else %}
+                                    4
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Advance</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{advance}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if registrationfee %}
+                                    5 <div class="mark"> &check;</div>
+                                {% else %}
+                                    5
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Registration Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{registrationfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if sessionfee %}
+                                    6 <div class="mark"> &check;</div>
+                                {% else %}
+                                    6
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Session Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{sessionfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if semesterfee %}
+                                    7 <div class="mark"> &check;</div>
+                                {% else %}
+                                    7
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Semester Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{semesterfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if midsemesterfee %}
+                                    8 <div class="mark"> &check;</div>
+                                {% else %}
+                                    8
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Mid Semester Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{midsemesterfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if hostelfee %}
+                                    9 <div class="mark"> &check;</div>
+                                {% else %}
+                                    9
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Hostel Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{hostelfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if formfillupfee %}
+                                    10 <div class="mark"> &check;</div>
+                                {% else %}
+                                    10
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Form Fill Up Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{formfillupfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if roverscouts %}
+                                    11 <div class="mark"> &check;</div>
+                                {% else %}
+                                    11
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Rover Scouts </p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{roverscouts}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if magazine %}
+                                    12 <div class="mark"> &check;</div>
+                                {% else %}
+                                    12
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Magazine </p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{magazine}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if library %}
+                                    13 <div class="mark"> &check;</div>
+                                {% else %}
+                                    13
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Library</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{library}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if industrialattachmentfee %}
+                                    14 <div class="mark"> &check;</div>
+                                {% else %}
+                                    14
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Industrial Attachment Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{industrialattachmentfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if equipmentofpracticalclass %}
+                                    15 <div class="mark"> &check;</div>
+                                {% else %}
+                                    15
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Equipment of Practical Class</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{equipmentofpracticalclass}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if affiliationfee %}
+                                    16 <div class="mark"> &check;</div>
+                                {% else %}
+                                    16
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Affiliation Fee</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{affiliationfee}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if medical %}
+                                    17 <div class="mark"> &check;</div>
+                                {% else %}
+                                    17
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Medical</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{medical}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if fine %}
+                                    18 <div class="mark"> &check;</div>
+                                {% else %}
+                                    18
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Fine</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{fine}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if others %}
+                                    19 <div class="mark"> &check;</div>
+                                {% else %}
+                                    19
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Others {{other_reason}}</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{others}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if tcccc %}
+                                    20 <div class="mark"> &check;</div>
+                                {% else %}
+                                    20
+                                {% endif %}
+
+
+
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">T.C/C.C.C</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{tcccc}}</p>
+                        </div>
+
+                    </div>
+                    <div class="r-body-row">
+
+                        <div class="r-one">
+                            <p class="small">
+                                {% if sports %}
+                                    21 <div class="mark"> &check;</div>
+                                {% else %}
+                                    21
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="r-two">
+                            <p class="small">Sports</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p class="small">{{sports}}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="r-body-footer-row">
+
+                        <div class="r-one">
+
+                        </div>
+
+                        <div class="r-two">
+                            <p>Total</p>
+                        </div>
+
+                        <div class="r-three">
+                            <p>{{total}}</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="r-body-amount-in-text">
+
+                        <div class="r-one">
+                            <p>In Word's :</p>
+                        </div>
+                        <div class="r-two">
+                            <p>{{num_in_text |title}} </p>
+                        </div>
+                        <div class="r-three">
+                            <p>Taka Only.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="receipt-footer">
+
+                <div class="r-f-left">
+                    <p class="student-name">{{rec.recipient}}</p>
+                    <p>Signature of Recipient</p>
+                </div>
+
+                <div class="r-f-right">
+                    <p class="student-name">{{rec.signature_of_accountant}}</p>
+                    <p>Signature of Accountant</p>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="print-btn" id="print_btn_tra">
+        <button onclick="window_print()">print</button>
+    </div>
+<div class="instruction" id="instruction">
+            <small  >Instructions for printing/saving as PDF</small>
+            <table>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Layout</td>
+                    <td>Portrait</td>
+                </tr>
+                <tr>
+                    <td>Paper Size</td>
+                    <td>A5</td>
+                </tr>
+                <tr>
+                    <td>Pages Per Sheet</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <th>Margins</th>
+                    <th>None </th>
+                </tr>
+                <tr>
+                    <th>Scale</th>
+                    <th>Default</th>
+                </tr>
+
+                <tr>
+                    <th>Finally</th>
+                    <th>Save</th>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>

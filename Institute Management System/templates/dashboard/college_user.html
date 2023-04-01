@@ -1,0 +1,199 @@
+
+                    <div class="update-hostel-data">
+
+                        <p class="d-c-title-u-h-data">Add a new teacher:</p>
+                        <button class="d-c-btn" onclick="on_universal('overlay1')">Add teacher</button>
+
+                    </div>
+                    <div class="line"></div>
+
+                    <p class="d-c-title">User / Teacher</p>
+
+                    <form id="search-student-to-add-form">
+                        <div class="search-add-bar">
+
+                                {% csrf_token %}
+                                <div class="input">
+                                    <input type="text" id="keyword-teacher" placeholder="Search teachers . . ." name="keyword">
+                                </div>
+
+                                <button class="add-btn search-btn" type="submit">search</button>
+
+
+                        </div>
+
+                    </form>
+
+                    <div class="hostel-students">
+                        {% for teacher in teachers %}
+
+
+                            <div class="h-student">
+                                <a style="color:unset" href="{% url 'profile' teacher.id %}">
+
+                                    <div class="h-s-left" id="h-student{{teacher.id}}">
+                                        <div class="img">
+                                            <img src="{{teacher.profile.image.url}}" alt="">
+                                        </div>
+
+                                        <div>
+                                            <p class="name">{{teacher.name}}</p>
+
+                                                <small><span>BSC in CSE </span></small>
+                                                <small><span>Number :</span> {{teacher.phone}}</small>
+
+
+                                                <small><span>Email :</span> {{teacher.email}}</small>
+
+                                        </div>
+
+
+                                    </div>
+                                </a>
+
+
+                                <div class="opitons">
+
+                                    <div onclick="h_odots({{teacher.id}})" class="dots odots">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </div>
+
+                                    <div id='toggle-option{{teacher.id}}' class="option-toggle">
+                                        <a href="{% url 'profile' teacher.id %}">view profile</a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="line"></div>
+                    <div class="update-hostel-data">
+
+                        <p class="d-c-title-u-h-data">Add a student:</p>
+                        <button class="d-c-btn" onclick="on_universal('overlay2')">Add Student</button>
+
+                    </div>
+                    <div class="line"></div>
+                    <p class="d-c-title">User / Student</p>
+                    <form id="search-students">
+                    <div class="search-add-bar">
+
+                            {% csrf_token %}
+                            <div class="input">
+                                <input type="text" id="keyword-student" placeholder="Query  students . . ." name="keyword">
+                            </div>
+
+
+                            <button type="submit" class="add-btn search-btn">Search</button>
+
+
+                    </div>
+
+                    </form>
+                    <div class="content-loader">
+                        <div id="loader-d-c-s-s" class="loader d-none"></div>
+                    </div>
+                    <div class="hostel-students" id="query-student">
+                        {% for student in students %}
+                            
+
+                            <div class="h-student">
+                                <a style="color:unset" href="{% url 'profile' student.id %}">
+
+                                    <div class="h-s-left" id="h-student{{students.id}}">
+                                        <div class="img">
+                                            <img src="{{student.profile.image.url}}" alt="">
+                                        </div>
+
+                                        <div>
+                                            <p class="name">{{student.name}}</p>
+                                            {% if student.in_hostel %}
+
+                                                <small class="paid-unpaid"><span>IN HOSTEL</span> </small>
+                                            {% else %}
+                                                <small class="paid-unpaid"><span> NOT IN HOSTEL</span> </small>
+                                            {% endif %}
+                                                <small><span>Roll :</span> {{student.roll}}</small>
+                                                <small><span>Registration :</span> {{student.registration}}</small>
+                                                <small><span>Semester :</span> {{student.semester}}</small>
+                                                <small><span>Department : </span> {{student.department}}</small>
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                </a>
+
+
+                                <div class="opitons">
+
+                                    <div onclick="h_odots({{student.id}})" class="dots odots">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </div>
+
+                                    <div id='toggle-option{{student.id}}' class="option-toggle">
+                                        <a href="{% url 'profile' student.id %}">view profile</a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                          
+                    
+
+                        
+
+
+                
+                    <div class="line"></div>
+
+                    <div class="college-system">
+                        <div class="college-system-heading">
+                            <h4>College System</h4>
+                        </div>
+                        <div class="update-hostel-data">
+
+                            <p class="d-c-title-u-h-data">Upload Student List:</p>
+                            <button class="d-c-btn" onclick="on_universal('overlay_student')">Upload Student List</button>
+
+                        </div>
+                        <div class="update-hostel-data">
+
+                            <p class="d-c-title-u-h-data">Upload Deafen List:</p>
+                            <button class="d-c-btn" onclick="on_universal('overlay7')">Upload Deafen List</button>
+
+                        </div>
+                        <div class="update-hostel-data">
+
+                            <p class="d-c-title-u-h-data">Upload Exam Routine:</p>
+                            <button class="d-c-btn"><a href="{% url 'upload_routine' %}">Upload Exam Routine</a></button>
+
+                        </div>
+                        <div class="update-hostel-data">
+
+                            <p class="d-c-title-u-h-data">Upload Class Routine:</p>
+                            <button class="d-c-btn"><a href="{% url 'upload_class_routine' %}">Upload Class Routine</a></button>
+
+                        </div>
+                        <div class="update-hostel-data">
+
+                            <p class="d-c-title-u-h-data">Upload Result Sheet:</p>
+                            <button class="d-c-btn"><a href="{% url 'upload_result' %}">Upload Result Sheet</a></button>
+
+                        </div>
+
+                    </div>
+
+
+

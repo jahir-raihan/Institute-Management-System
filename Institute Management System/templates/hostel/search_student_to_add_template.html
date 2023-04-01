@@ -1,0 +1,69 @@
+                    <form id="search-student-to-add-form">
+                    <div class="search-add-bar">
+
+                            {% csrf_token %}
+                            <div class="input">
+                                <input type="text" id="keyword" placeholder="Search student by roll . . ." name="keyword">
+                            </div>
+
+                            <button class="add-btn search-btn" type="submit">search</button>
+
+
+                    </div>
+
+                    </form>
+
+
+                    <div class="hostel-students">
+                        {% for student in students %}
+                            <a style="color:unset" href="{% url 'view-student-details' student.id %}">
+                            <div class="h-student">
+
+                                <div class="h-s-left" id="h-student{{students.id}}">
+                                    <div class="img">
+                                        <img src="{{student.profile.image.url}}" alt="">
+                                    </div>
+                                <div>
+                                    <p class="name">{{student.name}}</p>
+                                    {% if student.in_hostel %}
+
+                                        <small class="paid-unpaid"><span> AlREADY IN HOSTEL</span> </small>
+                                    {% else %}
+                                        <small class="paid-unpaid"><span> NOT IN HOSTEL</span> </small>
+                                    {% endif %}
+
+
+
+                                        <small><span>Roll :</span> {{student.roll}}</small>
+                                        <small><span>Semester :</span> {{student.semester}}</small>
+
+
+                                        <small><span>Department :</span>{{student.department}}</small>
+
+                                </div>
+                            </div>
+                            </div>
+
+                            </a>
+
+
+                                <div class="opitons">
+
+                                    <div onclick="h_odots({{student.id}})" class="dots odots">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </div>
+
+                                    <div id='toggle-option{{student.id}}' class="option-toggle">
+                                        <a href="{% url 'profile' student.id %}">view profile</a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        {% endfor %}
+                    </div>

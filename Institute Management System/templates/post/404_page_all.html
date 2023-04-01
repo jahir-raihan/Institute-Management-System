@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <title>{{title}}</title>
+    <style>
+        .container{
+            width:80%;
+            margin:auto;
+        }
+        button{
+            border:none;
+            background:#0C82EF;
+            padding:.4em 2em;
+            width:100px;
+            margin:2em auto;
+            color:white;
+            border-radius:2px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button  onclick="history.back()">Back</button>
+        <p style="color:#ff8800;text-align:center; margin:20% auto;">{{message}}</p>
+    </div>
+
+</body>
+</html>

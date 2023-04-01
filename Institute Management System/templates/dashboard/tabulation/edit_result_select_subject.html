@@ -1,0 +1,92 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block title %} <title id="hostel-title">select subject to edit</title>{% endblock title %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'hostel/css/hostel.css' %}">{% endblock cssfile %}
+{% block cssfile2 %} <link rel="stylesheet" href="{% static 'post/css/base.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}">{% endblock cssfile3 %}
+
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+        <div class="main-body">
+
+
+            <div class="main">
+                <div class="back-btn">
+                    <a onclick="history.back()">
+                    <div class="btn">
+                        <p>Back</p>
+                    </div></a>
+
+                </div>
+
+
+
+                <div class="create-post-body" id="create-post-body">
+
+
+                        <p style="color:black; margin-top:.5em;">Click on subjects to edit /</p>
+                        <div class="line"></div>
+                        <div class="hostel-students">
+                        {% for sub in result %}
+
+                                <div class="h-student">
+                                    <a style="color:unset;" href="{% url 'update_store_grade_info' sub.id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+                                            <img src="{{sub.result.student_name.profile.image.url}}" alt="">
+                                        </div>
+                                        <div >
+                                            <p class="name">{{sub.subject.subject_name}} ({{sub.subject.subject_code}})</p>
+
+
+
+
+                                                <small><span>Total Mark :</span> {{sub.subject.total_mark}} </small>
+
+                                                <small><span>Mark Obtained :</span> {{sub.mark}} </small>
+
+
+                                                <small><span>Letter Grade :</span> {{sub.grade_chr}} </small>
+                                                <small><span>Grade Point :</span> {{sub.grade_point}} </small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div  class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div  class="option-toggle">
+
+
+                                </div>
+
+                            </div>
+
+                                </div>
+
+                        {% endfor %}
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    {% endblock container_main_body %}
+    {% block container_right %}
+    {% endblock container_right %}

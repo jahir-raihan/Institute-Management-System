@@ -1,0 +1,95 @@
+ {% load static %}
+                {% csrf_token %}
+                <div class="links">
+                    <button class='link-btn1 link-btn ' btn_no="1" id="t-link-btn1">Tabulation</button>
+                    <button class='link-btn2 link-btn ' btn_no="2" id="t-link-btn2">Mark Sheets</button>
+                    <button class='link-btn3 link-btn' btn_no="3" id="t-link-btn3">S.Mark Sheet</button>
+                    <button class='link-btn4 link-btn active' btn_no="4" id="t-link-btn4">E.Result</button>
+                </div>
+                 <div class="content-loader">
+                        <div id="loader-d-c-g-tab-t" class="loader d-none"></div>
+                    </div>
+                <div class="create-post-body">
+
+                    <div class="search-top">
+                        <div class="s-top-logo">
+                            <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="">
+                        </div>
+
+                        <div class="s-top-titles">
+                            <p class="college-name">{{clg_name}}</p>
+                            <p class="info">Search Result to edit</p>
+
+                        </div>
+                        <div class="line" style="width:210px"></div>
+
+
+                    </div>
+                    <div id="s-tab-body">
+                    <form id="search-to-edit-page-form" >
+                        {% csrf_token %}
+                        <div class="search-middle">
+
+                             <div class="input" style="justify-content:unset !important;">
+                                    <span style="margin-right:7em;">Roll :</span> <input required style="width:208px" name="roll" id="roll" placeholder="Enter roll number . . ."  type="number">
+                             </div>
+
+                            <div class="select-semester-option">
+                                    <div class="label" style="margin-top:0;">
+                                        Session :
+                                    </div>
+
+                                    <div class="s-semester">
+                                         <select required name="session" id="session">
+                                            <option value="">--------</option>
+                                            {% for year in session_year_list %}
+                                                <option value="{{year}}">{{year}}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+
+
+                            </div>
+                            <div class="select-semester-option s-s-o2 ">
+                                <div class="label s-label">
+                                    Department :
+                                </div>
+
+                                <div class="s-semester">
+                                    {{form2.department}}
+
+                                </div>
+
+
+                            </div>
+                            <div class="select-semester-option s-s-o2 ">
+                                <div class="label s-label">
+                                    Semester :
+                                </div>
+
+                                <div class="s-semester">
+                                    {{form.semester}}
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="search-bottom" id="f-tab-sheet">
+
+                            <button type="submit" class="result-submit-btn" >Search</button>
+                        </div>
+
+
+                    </form>
+                    </div>
+
+
+
+                </div>

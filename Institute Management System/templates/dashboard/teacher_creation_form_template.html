@@ -1,0 +1,78 @@
+
+
+{% load static %}
+
+
+
+
+
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Add a Teacher</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="teacher-registration-form-ajax" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="search-middle">
+
+                                    <div class="input">
+                                        <span>Name :</span> <input name="name" required  placeholder="Enter full name . . ."  type="text">
+                                    </div>
+                                    <div class="input">
+                                        <span>Education :</span> <input name="education" required placeholder="Ex: BSC in CSE " type="text">
+                                    </div>
+                                    <div class="input">
+                                        <span>Number :</span> <input name="phone" required placeholder="Enter contact number . . ." type="number">
+                                    </div>
+                                    <div class="input">
+                                        <span>Email :</span> <input name="email" required placeholder="Enter valid email . . ." type="email">
+                                    </div>
+                                    <div class="input">
+                                        <span>Role :</span>
+                                        <div class="select-dashboard">
+                                            <select  name="role" class="register-select">
+
+                                                <option  value="teacher">Teacher</option>
+                                                <option value="accountant">Accountant</option>
+                                                <option  value="admin">Admin</option>
+                                                <option  value="hostel_manager">Hostel Manager</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Password :</span> <input name="password1" required placeholder="Enter password . . ." type="password">
+                                    </div>
+                                    <div class="input">
+                                        <span>Confirm <br> password :</span> <input  name="password2" required placeholder="Confirm password . . ." type="password">
+                                    </div>
+
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="teacher-register-submit-btn" class=""  type="submit">
+                                    <p id="submit-text-t-r-r">Submit</p>
+
+                                    <div id="content-loader-t-r-r" class="content-loader d-none">
+                                        <div id="loader-d-c-s-s" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+

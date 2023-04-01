@@ -1,0 +1,21 @@
+{% for comment in post.comment_set.all|dictsortreversed:'date_posted' %}
+
+<div class="comment">
+
+
+
+    <div class="comment-left">
+        <img src="{{comment.user.profile.image.url}}" draggable="false" alt="">
+    </div>
+
+    <div class="comment-right">
+
+        <p class="u-name">{{comment.user.name}}</p>
+
+        <p class="comment-text">{{comment.comment}}</p>
+
+        <small class="time-commented">{{comment.date_posted|timesince:time}}</small>
+
+    </div>
+</div>
+{% endfor %}

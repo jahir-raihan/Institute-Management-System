@@ -1,0 +1,59 @@
+{% load static %}
+<button class="refresh-btn" id="refresh-btn" onclick="s_location_reload()" title="Refresh">Refresh</button>
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                 <p class="info">Add Previous Semester Data</p>
+
+                            </div>
+                            <div style="width:280px;" class="line"></div>
+
+
+                        </div>
+                        <form id="add_prev_semester_data">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                <small class="confirm-text">**Add Previous Semester Data of a  Student.</small>
+                                 <div class="input">
+                                    <span>Roll :</span> <input required  name="roll" id="roll" placeholder="Enter roll number . . ."  type="number">
+                                 </div>
+                                <small class="confirm-text">**Select the semester which you want to add data for a student.</small>
+                                <div class="input">
+                                    <span>Semester :</span>
+                                    <div class="select-dashboard">
+                                        {{form.semester}}
+                                    </div>
+                                </div>
+                                <small class="confirm-text">**To pay means , what was the semester fee of selected semester.</small>
+                                 <div class="input">
+                                    <span>To pay :</span> <input required  name="amount_to_pay" id="amount_to_pay" placeholder="Enter roll number . . ."  type="number">
+                                 </div>
+                                <small class="confirm-text">**Amount paid means, The amount paid by student for selected semester.</small>
+                                 <div class="input">
+                                    <span>Amount paid :</span> <input required  name="paid" id="paid" placeholder="Enter roll number . . ."  type="number">
+                                 </div>
+
+
+
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="add_p_semester_d_btn" class=""  type="submit">
+                                    <p id="submit-text-a-prev-s-data">Add Data</p>
+
+                                    <div id="content-loader-add-prev-s-data" class="content-loader d-none">
+                                        <div id="loader-d-c-a-prev-s-data" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+

@@ -1,0 +1,619 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+{% load auth_extras %}
+{% block cssfile2 %}<link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}"> {% endblock cssfile3 %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'post/css/create.css' %}"> {% endblock cssfile %}
+{% block cssfile4 %} <link rel="stylesheet" href="{% static 'hostel/css/hostel.css' %}"> {% endblock cssfile4 %}
+{% block js_file %}<script src="{% static 'user/js/user.js' %}"></script> {% endblock js_file %}
+{% block title %}
+<title>Dashboard </title>
+{% endblock title %}
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+        <div class="main-body">
+
+            <div class="main" id="dashboard-main">
+                <div class="links">
+                    <button class='link-btn1 link-btn active' btn_no="1" id="link-btn1">Semester System</button>
+                    <button class='link-btn2 link-btn' btn_no="2" id="link-btn2">Hostel System</button>
+                    <button class='link-btn3 link-btn' btn_no="3" id="link-btn3">College & User System</button>
+                </div>
+                    <div class="content-loader">
+                        <div id="loader-d-c-g-t" class="loader d-none"></div>
+                    </div>
+                <div class="dashboard-contents .create-post-body" id="dashboard_contents">
+                    <div class="update-hostel-data">
+                        <p class="d-c-title-u-h-data">Update Semester :</p>
+                        <button class="d-c-btn" onclick="on_universal('overlay3')">Update Semester Data</button>
+                    </div>
+
+                    <div class="update-hostel-data" style="grid-template-columns:60% 40%;">
+                        <p class="d-c-title-u-h-data">Add Previous Semester Data :</p>
+                        <button class="d-c-btn" onclick="on_universal('overlay_add_prev_s_data')">Add</button>
+                    </div>
+
+                    <div class="line"></div>
+                    <p class="d-c-title">Payment / Semester</p>
+
+                    <form id="search-semester-students-dashboard">
+                    <div class="search-add-bar">
+
+                            {% csrf_token %}
+                            <div class="input">
+                                <input type="text" id="keyword" placeholder="Query  students . . ." name="keyword">
+                            </div>
+
+
+                        <button type="submit" class="add-btn search-btn">Search</button>
+
+
+                    </div>
+                    </form>
+
+                    <div class="hostel-students" id="d-semester-students">
+                        {% for student in students %}
+
+                                <div class="h-student">
+                                    <a style="color:unset;" href="{% url 'update_semester_fee' student.id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+                                            <img src="{{ student.student.profile.image.url }}" alt="">
+                                        </div>
+                                        <div >
+                                            <p class="name">{{student.student.name}}</p>
+                                            <small class="paid-unpaid"><span>Status :</span> {{student.payment_status}}</small>
+
+
+
+                                                <small><span>Roll :</span> {{student.student.roll}}</small>
+                                                <small><span>Semester :</span> {{student.student.semester}}</small>
+
+
+                                                <small><span>Department :</span> {{student.student.department}}</small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div onclick="s_odots({{student.student.id}})" class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div id='toggle-option{{student.student.id}}' class="option-toggle">
+                                    <a href="{% url 'profile' student.student.id %}">view profile</a>
+
+                                </div>
+
+                            </div>
+
+                                </div>
+
+                        {% endfor %}
+
+
+
+                    </div>
+                    
+                </div>
+            </div>
+                <div id="overlay1" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-r-t">
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Authenticate</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="admin-authenticate-form">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small class="confirm-text">**Confirm your password</small>
+                                    <div class="input">
+                                        <span>Password :</span> <input id="authenticate-password" name="password" placeholder="Enter password . . ." type="password">
+                                        <input hidden id="r-email" name="email" value="{{ request.user.email }}">
+                                    </div>
+
+
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="teacher-register-submit-btn" class=""  type="submit">
+                                    <p id="submit-text-t-r-r">Submit</p>
+
+                                    <div id="content-loader-t-r-r" class="content-loader d-none">
+                                        <div id="loader-d-c-s-s" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay1')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+                </div>
+                <div id="overlay2" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-r-s">
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Add a Student</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form  id="create-student-form-ajax">
+                            {% csrf_token %}
+                            <div class="search-middle">
+
+                                    <div class="input">
+                                        <span>Name :</span> <input name="name" required placeholder="Enter full name . . ."  type="text">
+                                    </div>
+                                    <div class="input">
+                                        <span>Mother  :</span> <input name="mother" required placeholder="Enter mother name . . ."  type="text">
+                                    </div>
+                                    <div class="input">
+                                        <span>Father  :</span> <input name="father" required placeholder="Enter father name . . ."  type="text">
+                                    </div>
+                                   <div class="input">
+                                        <span>Email :</span> <input name="email" required placeholder="Enter valid email . . ." type="email">
+                                    </div>
+                                    <div class="input">
+                                        <span>Number :</span> <input name="phone" required placeholder="Enter contact number . . ." type="number">
+                                    </div>
+                                    <div class="input">
+                                        <span>Roll :</span> <input name="roll" required placeholder="Enter roll number . . ." type="number">
+                                    </div>
+                                    <div class="input">
+                                        <span>Registration :</span> <input name="registration" required placeholder="Enter registration number . . ." type="number">
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Session :</span>
+                                        <div class="select-dashboard">
+                                             <select name="session" required >
+                                                <option value="">--------</option>
+                                                {% for year in session_year_list %}
+                                                    <option value="{{year}}">{{year}}</option>
+                                                {% endfor %}
+                                             </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Semester :</span>
+                                        <div class="select-dashboard">
+                                            {{form.semester}}
+                                        </div>
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Department :</span>
+                                        <div class="select-dashboard">
+                                            {{ form.department }}
+                                        </div>
+                                    </div>
+                                    <div class="input">
+                                        <span>Gender :</span>
+                                        <div class="select-dashboard">
+                                            {{form.gender}}
+                                        </div>
+                                    </div>
+                                    <div class="input ">
+                                        <span class="span-class">Religion : </span>
+                                        <div class="select-dashboard">
+                                            {{form.religion}}
+                                        </div>
+                                    </div>
+                                     <div class="input">
+                                        <span class="span-class">Half Fee : </span>
+                                         <div class="select-dashboard">
+                                            <select name="discount" id="">
+                                                <option value="">-------</option>
+                                                <option value="father_is_dead">Father is dead</option>
+                                                <option value="has_disability">Has Disability</option>
+                                                <option value="special_discount">Special Discount</option>
+                                            </select>
+                                         </div>
+                                      </div>
+                                    <div class="input">
+                                        <span > User Image :</span> <input required class="image-input"  type="file" placeholder="Upload you Image" name="image">
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Password :</span> <input name="password1" required placeholder="Enter password . . ." type="password">
+                                    </div>
+                                    <div class="input">
+                                        <span>Confirm <br> password :</span> <input required name="password2" placeholder="Confirm password . . ." type="password">
+                                    </div>
+
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button type="submit">Submit</button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay2')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="3"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="3"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+                <div id="overlay3" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-u-semester">
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Authenticate</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="u-semester-authenticate-form">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small class="confirm-text">**Confirm your password</small>
+                                    <div class="input">
+                                        <span>Password :</span> <input id="s-u-auth-pass" name="password" placeholder="Enter password . . ." type="password">
+                                        <input hidden id="s-u-auth-email"  name="email" value="{{ request.user.email }}">
+                                    </div>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="update-semester-submit-btn" class=""  type="submit">
+                                    <p id="submit-text-u-semester-r">Submit</p>
+
+                                    <div id="content-loader-u-s-r" class="content-loader d-none">
+                                        <div id="loader-d-c-u-s" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay3')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+                <div id="overlay4" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-u-hostel-data">
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Authenticate</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="u-hostel-authenticate-form">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small class="confirm-text">**Confirm your password</small>
+                                    <div class="input">
+                                        <span>Password :</span> <input id="h-u-auth-pass" name="password" placeholder="Enter password . . ." type="password">
+                                        <input hidden id="h-u-auth-email"  name="email" value="{{ request.user.email }}">
+                                    </div>
+
+
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="update-hostel-submit-btn" class=""  type="submit">
+                                    <p id="submit-text-u-hostel-r">Submit</p>
+
+                                    <div id="content-loader-u-h-r" class="content-loader d-none">
+                                        <div id="loader-d-c-u-h" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay4')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+            <div id="overlay7" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-deafen-list">
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Authenticate</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="deafen-list-authenticate-form">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small class="confirm-text">**Confirm your password</small>
+                                    <div class="input">
+                                        <span>Password :</span> <input id="d-l-auth-pass" name="password" placeholder="Enter password . . ." type="password">
+                                        <input hidden id="d-l-auth-email"  name="email" value="{{ request.user.email }}">
+                                    </div>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="deafen-list-submit-btn" class=""  type="submit">
+                                    <p id="submit-text-deafen-list">Submit</p>
+
+                                    <div id="content-loader-d-l" class="content-loader d-none">
+                                        <div id="loader-d-c-d-l" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay7')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+
+            <div id="overlay_student" >
+
+                <div class="overlay-content">
+                    <div class="create-post-body overlay-body" id="overlay-body-student-list">
+
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Authenticate</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="student-list-authenticate-form">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small class="confirm-text">**Confirm your password</small>
+                                    <div class="input">
+                                        <span>Password :</span> <input id="s-l-auth-pass" name="password" placeholder="Enter password . . ." type="password">
+                                        <input hidden id="s-l-auth-email"  name="email" value="{{ request.user.email }}">
+                                    </div>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="student-list-submit-btn" class=""  type="submit">
+                                    <p id="submit-text-student-list">Submit</p>
+
+                                    <div id="content-loader-s-l" class="content-loader d-none">
+                                        <div id="loader-d-c-s-l" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay_student')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+            <div id="overlay_add_prev_s_data" >
+
+                <div class="overlay-content" >
+                    <div class="create-post-body overlay-body" id="overlay-body-add-prev-semester-data" style="position:relative">
+                        <button class="refresh-btn" id="refresh-btn" onclick="s_location_reload()" title="Refresh">Refresh</button>
+
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Add Previous Semester Data</p>
+
+                            </div>
+                            <div style="width:280px;" class="line"></div>
+
+
+                        </div>
+                        <form id="add_prev_semester_data">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                <small class="confirm-text">**Add Previous Semester Data of a  Student.</small>
+                                 <div class="input">
+                                    <span>Roll :</span> <input required  name="roll" id="roll" placeholder="Enter roll number . . ."  type="number">
+                                 </div>
+                                <small class="confirm-text">**Select the semester which you want to add data for a student.</small>
+                                <div class="input">
+                                    <span>Semester :</span>
+                                    <div class="select-dashboard">
+                                        {{form.semester}}
+                                    </div>
+                                </div>
+                                <small class="confirm-text">**To pay means , what was the semester fee of selected semester.</small>
+                                 <div class="input">
+                                    <span>To pay :</span> <input required  name="amount_to_pay" id="amount_to_pay" placeholder="Enter roll number . . ."  type="number">
+                                 </div>
+                                <small class="confirm-text">**Amount paid means, The amount paid by student for selected semester.</small>
+                                 <div class="input">
+                                    <span>Amount paid :</span> <input required  name="paid" id="paid" placeholder="Enter roll number . . ."  type="number">
+                                 </div>
+
+
+
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="add_p_semester_d_btn" class=""  type="submit">
+                                    <p id="submit-text-a-prev-s-data">Add Data</p>
+
+                                    <div id="content-loader-add-prev-s-data" class="content-loader d-none">
+                                        <div id="loader-d-c-a-prev-s-data" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="cross" onclick="off_universal('overlay_add_prev_s_data')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20.946" height="20.534" viewBox="0 0 14.946 14.534">
+                        <g id="Group_164" data-name="Group 164" transform="translate(-7724.46 -7932.419)">
+                          <line id="Line_55" data-name="Line 55" x2="12.867" y2="12.372" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                          <line id="Line_56" data-name="Line 56" y1="12.372" x2="12.867" transform="translate(7725.5 7933.5)" fill="none" stroke="#000" stroke-width="2"/>
+                        </g>
+                      </svg>
+                  </div>
+            </div>
+        </div>
+    {% endblock container_main_body %}
+
+    {% block container_right %}
+    {% endblock container_right %}

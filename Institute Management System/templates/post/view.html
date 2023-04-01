@@ -1,0 +1,218 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+{% load auth_extras %}
+
+{% block title %}
+<title>View post</title>
+{% endblock title %}
+
+{% block cssfile %}<link rel="stylesheet" href="{% static 'post/css/view.css' %}">{% endblock cssfile %}
+
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+
+    {% block container_main_body %}
+            <div class="main-body">
+
+
+            <div class="main">
+
+                <div class="back-btn">
+                    <div class="btn" onclick="history.back()">
+                        <p>Back</p>
+                    </div>
+
+                </div>
+
+
+
+
+                <div  class="post-body">
+
+                    <div class="post-head">
+
+                        <div class="profile">
+                            <a href="#">
+                                <img src="{{post.post_user.profile.image.url}}" alt="">
+                            </a>
+
+                            <div class="profile-texts">
+                                <div class="p-t-left">
+                                    <a href="{% url 'profile' post.post_user.id %}">
+                                        <p class="u-name">{{post.post_user}}</p>
+                                    </a>
+                                    <small>{{post.date_posted|timesince:time}}</small>
+                                </div>
+
+                                <p class="category"> <a href="#">Teacher</a></p>
+                            </div>
+                        </div>
+
+                        <div class="opitons">
+
+                            <div onclick="odots2()" class="dots">
+                                <img src="{% static 'post/images/tree dots.svg' %}" alt="">
+                            </div>
+
+                            {% if post.post_user == request.user %}
+                                <div id='toggle-option' class="option-toggle">
+
+                                    <a href="{% url 'update' post.id %}" >Update</a>
+                                    <a href="{% url 'delete' post.id %}">Delete</a>
+                                </div>
+                            {% else %}
+
+                                <div id='toggle-option' class="option-toggle">
+
+                                    <a href="#">option coming soon.</a>
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    <div class="post-content">
+
+                        <p class="texts">{{post.text |linebreaksbr}}</p>
+
+                        {% if post.image %}
+                            <div>
+                                <a target="_blank" href="{{post.image.url}}"><img src="{{post.image.url}}" alt=""></a>
+                            </div>
+                        {% endif %}
+                    </div>
+
+
+                    <div class="post-react">
+
+                        <form id="form-like-id{{post.id}}">
+                            {% csrf_token %}
+
+                            {% if request.user|has_liked:post.id %}
+                                <div  id="like-btn{{post.id}}" post_id='{{post.id}}' page="view" user='{{user}}' class="like-btn like-btn-view like-btn-toggle">
+                                    <?xml version="1.0" encoding="iso-8859-1"?>
+
+                                    <svg  class="btn-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+                                        <g>
+                                            <g>
+                                                <path class="likebtn" d="M83.578,167.256H16.716C7.524,167.256,0,174.742,0,183.971v300.881c0,9.225,7.491,16.713,16.716,16.713h66.862
+                                                    c9.225,0,16.716-7.489,16.716-16.713V183.971C100.294,174.742,92.769,167.256,83.578,167.256z"/>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <path class="likebtn" d="M470.266,167.256c-2.692-0.456-128.739,0-128.739,0l17.606-48.032c12.148-33.174,4.283-83.827-29.424-101.835
+                                                    c-10.975-5.864-26.309-8.809-38.672-5.697c-7.09,1.784-13.321,6.478-17.035,12.767c-4.271,7.233-3.83,15.676-5.351,23.696
+                                                    c-3.857,20.342-13.469,39.683-28.354,54.2c-25.952,25.311-106.571,98.331-106.571,98.331v267.45h278.593
+                                                    c37.592,0.022,62.228-41.958,43.687-74.749c22.101-14.155,29.66-43.97,16.716-66.862c22.102-14.155,29.66-43.97,16.716-66.862
+                                                    C527.572,235.24,514.823,174.792,470.266,167.256z"/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <p class="likes">{{post.likes}}</p>
+
+                                </div>
+
+                            {% else %}
+                                <div  id="like-btn{{post.id}}" post_id='{{post.id}}' page="view" class="like-btn like-btn-view">
+                                    <?xml version="1.0" encoding="iso-8859-1"?>
+                                    <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                    <svg  class="btn-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+                                        <g>
+                                            <g>
+                                                <path class="likebtn" d="M83.578,167.256H16.716C7.524,167.256,0,174.742,0,183.971v300.881c0,9.225,7.491,16.713,16.716,16.713h66.862
+                                                    c9.225,0,16.716-7.489,16.716-16.713V183.971C100.294,174.742,92.769,167.256,83.578,167.256z"/>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <path class="likebtn" d="M470.266,167.256c-2.692-0.456-128.739,0-128.739,0l17.606-48.032c12.148-33.174,4.283-83.827-29.424-101.835
+                                                    c-10.975-5.864-26.309-8.809-38.672-5.697c-7.09,1.784-13.321,6.478-17.035,12.767c-4.271,7.233-3.83,15.676-5.351,23.696
+                                                    c-3.857,20.342-13.469,39.683-28.354,54.2c-25.952,25.311-106.571,98.331-106.571,98.331v267.45h278.593
+                                                    c37.592,0.022,62.228-41.958,43.687-74.749c22.101-14.155,29.66-43.97,16.716-66.862c22.102-14.155,29.66-43.97,16.716-66.862
+                                                    C527.572,235.24,514.823,174.792,470.266,167.256z"/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <p class="likes">{{post.likes}}</p>
+
+                                </div>
+
+                            {% endif %}
+
+
+
+
+                        </form>
+
+                        <div class="comments-section">
+
+                            <form comment_form="{{post.id}}" class="comment-form comment-form-view" id="comment-form{{post.id}}" style="border-bottom:.5px solid rgba(0,0,0,0.511);">
+                                {% csrf_token %}
+                                <div class="write-comment">
+                                    <img src="{{request.user.profile.image.url}}" draggable="false" alt="">
+
+
+                                        <input  id="write_comment{{post.id}}" name="comment_text" placeholder="write a comment . . ."  type="text">
+
+                                        <button type="submit"  class="comment-btn" post_id='{{post.id}}'>
+                                           <p>Comment</p>
+                                        </button>
+
+                                </div>
+                            </form>
+
+                            <div class="allcomment">
+                                <small draggable="true" class="small-links" href="#">All comments</small>
+                            </div>
+
+
+
+                            <div class="comment-body">
+
+                                {% for comment in post.comment_set.all|dictsortreversed:'date_posted' %}
+
+                                    <div class="comment">
+
+
+
+                                        <div class="comment-left">
+                                            <img src="{{comment.user.profile.image.url}}" draggable="false" alt="">
+                                        </div>
+
+                                        <div class="comment-right">
+
+                                             <a href="{% url 'profile' comment.user.id %}">
+                                                <p class="u-name">{{comment.user.name}} </p>
+                                            </a>
+
+                                            <p class="comment-text">{{comment.comment}}</p>
+
+                                            <small class="time-commented">{{comment.date_posted|timesince:time}}</small>
+
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    {% endblock container_main_body %}
+
+

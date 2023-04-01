@@ -1,0 +1,17 @@
+{% load static %}
+<div style="width:100%; margin:1em 0 !important;" class="line"></div>
+<p class="name q-s-c-trans-center"><span>{{ student.name | title}} ({{student.session}})</span></p>
+
+
+
+<p class="q-s-c-trans-center"><span>Roll : </span> {{student.roll}}</p>
+
+
+<p style="margin-top:1em;">Arrears Information </p>
+<div style="width:100%; margin:.5em 0 1em 0!important;" class="line"></div>
+<p> <span>Semester Fee :</span> {{semester_data.amount_to_pay}} TK</p>
+<p> <span>Form Fill Up Fee :</span> {{form_fill_up_data}} TK</p>
+<p> <span>Mid Semester Fee :</span> {{mid_term_data}} TK</p>
+{% if student.in_hostel %}
+    <p> <span>Hostel Fee :</span> {{hostel_data}} TK</p>
+{% endif %}

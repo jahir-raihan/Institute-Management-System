@@ -1,0 +1,51 @@
+
+                        {% for student in students %}
+
+
+                            <div class="h-student">
+                                <a style="color:unset" href="{% url 'profile' student.id %}">
+
+                                    <div class="h-s-left" id="h-student{{students.id}}">
+                                        <div class="img">
+                                            <img src="{{student.profile.image.url}}" alt="">
+                                        </div>
+
+                                        <div>
+                                            <p class="name">{{student.name}}</p>
+                                            {% if student.in_hostel %}
+
+                                                <small class="paid-unpaid"><span>IN HOSTEL</span> </small>
+                                            {% else %}
+                                                <small class="paid-unpaid"><span> NOT IN HOSTEL</span> </small>
+                                            {% endif %}
+                                                <small><span>Roll :</span> {{student.roll}}</small>
+                                                <small><span>Registration :</span> {{student.registration}}</small>
+                                                <small><span>Semester :</span> {{student.semester}}</small>
+                                                <small><span>Department : </span> {{student.department}}</small>
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                </a>
+
+
+                                <div class="opitons">
+
+                                    <div onclick="h_odots({{student.id}})" class="dots odots">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </div>
+
+                                    <div id='toggle-option{{student.id}}' class="option-toggle">
+                                        <a href="{% url 'profile' student.id %}">view profile</a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}

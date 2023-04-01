@@ -1,0 +1,100 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block title %} <title id="hostel-title">Hostel</title>{% endblock title %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'hostel/css/hostel.css' %}">{% endblock cssfile %}
+{% block cssfile2 %} <link rel="stylesheet" href="{% static 'post/css/base.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}">{% endblock cssfile3 %}
+
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+        <div class="main-body">
+
+
+            <div class="main">
+                <div class="back-btn">
+                    <a onclick="history.back()">
+                    <div class="btn">
+                        <p>Back</p>
+                    </div></a>
+
+                </div>
+
+
+
+                <div class="create-post-body" id="create-post-body">
+
+                        <div class="search-add-bar">
+                            <form id="search-hostel-students">
+                                {% csrf_token %}
+                                <div class="input">
+                                    <input type="text" id="keyword" placeholder="Query hostel students . . ." name="keyword">
+                                </div>
+                            </form>
+                            <a style="display:contents;" href="{% url 'search-to-add' %}"> <button  class="add-btn">Add  &plus;</button></a>
+
+
+                        </div>
+
+
+                        <div class="hostel-students">
+                        {% for student in students %}
+
+                                <div class="h-student">
+                                    <a style="color:unset;" href="{% url 'update_hostel_fee' student.id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+                                            <img src="{{ student.student.profile.image.url }}" alt="">
+                                        </div>
+                                        <div >
+                                            <p class="name">{{student.student.name}}</p>
+                                            <small class="paid-unpaid"><span>Status :</span> {{student.payment_status}}</small>
+
+
+
+                                                <small><span>Roll :</span> {{student.student.roll}}</small>
+                                                <small><span>Semester :</span> {{student.student.semester}}</small>
+
+
+                                                <small><span>Department :</span> {{student.student.department}}</small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div onclick="h_odots({{student.student.id}})" class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div id='toggle-option{{student.student.id}}' class="option-toggle">
+                                    <a href="{% url 'profile' student.student.id %}">view profile</a>
+
+                                </div>
+
+                            </div>
+
+                                </div>
+
+                        {% endfor %}
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    {% endblock container_main_body %}
+    {% block container_right %}
+    {% endblock container_right %}

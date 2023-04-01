@@ -1,0 +1,36 @@
+{% load static %}
+
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Semester Data</p>
+
+                            </div>
+                            <div class="line"></div>
+
+
+                        </div>
+                        <form id="u-semester-form-ajax"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="search-middle">
+                                    <small style="color:#172577;" class="confirm-text">**Authentication complete . Press the button to Update.</small>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+                                <button id="update-semester-btn" class=""  type="submit">
+                                    <p id="submit-text-u-semester-submit-r">Update</p>
+
+                                    <div id="content-loader-u-s-submit-r" class="content-loader d-none">
+                                        <div id="loader-d-c-u-s-submit" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>
+

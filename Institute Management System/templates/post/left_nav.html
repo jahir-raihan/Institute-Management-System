@@ -1,0 +1,113 @@
+{% load static %}
+
+        <div class="left">
+
+
+
+            <div class="left-side">
+
+
+                <div class="side-profile-link">
+                    <a href="{% url 'profile' request.user.id %}">
+                        <img src="{{ request.user.profile.image.url }}" draggable="false" alt="">
+                        <p class="name-title">{{request.user.name}}</p>
+
+                    </a>
+                </div>
+
+                <a href="{% url 'view_result' %}">
+
+                    <div class="result-link">
+                        <div  class="title">
+                            <div  id="side-result-i-t" class="side-inner-title">
+                                <img  src="{% static 'post/images/result.png' %}" draggable="false" alt="">
+                                <p>Results</p>
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </a>
+
+                <div class="exam-routines">
+                    <a href="{% url 'view_routine' %}">
+                        <div  class="title">
+                            <div  class="side-inner-title">
+                                <img src="{% static 'post/images/result.png' %}" draggable="false" alt="">
+                                <p>Exam Routines</p>
+
+                            </div>
+
+
+                        </div>
+                    </a>
+
+
+
+
+
+
+                </div>
+                <div class="exam-routines">
+                    <a href="{% url 'view_class_routine' %}">
+                        <div  class="title">
+                            <div  class="side-inner-title">
+                                <img src="{% static 'post/images/result.png' %}" draggable="false" alt="">
+                                <p>Class Routines</p>
+
+                            </div>
+
+
+                        </div>
+                    </a>
+
+
+
+
+
+
+                </div>
+
+
+
+                <div class="exam-routines">
+                    <div onclick="sideroutineF()" class="title">
+                        <div onclick="sebg()" id="side-exam-i-t" class="side-inner-title">
+                            <img src="{% static 'post/images/accounting.png' %}" alt="">
+                            <p>Fee system</p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    <div id="side-e-semesters"  class="semesters">
+                        <div class="r-s-c">
+                            <ul>
+
+                                <li><a href="{% url 'semester_home' %}">Semester Fee<p>>></p> </a> </li>
+                                <li><a href="{% url 'hostel_home' %}">Hostel Fee  <p>>></p> </a> </li>
+                                <li><a href="{% url 'registration_home' %}">Form Fill Up Fee<p>>></p> </a> </li>
+                                <li><a href="{% url 'midterm_home' %}">Midterm Fee<p>>></p> </a> </li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>

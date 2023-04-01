@@ -1,0 +1,43 @@
+{% load static %}
+{% for transaction in transactions %}
+
+    <div class="h-student">
+        <a target="_blank" style="color:unset;" href="{% url 'view_transaction' transaction.receipt_id %}">
+        <div class="h-s-left">
+            <div class="img">
+
+                    <img src="{{transaction.recipient_student.profile.image.url}}" alt="{{transaction.recipient}} Image">
+
+            </div>
+            <div >
+                <small style="font-size:15px;"><span>Recipient  :</span> {{transaction.recipient}}</small>
+
+
+
+                    <small><span>Receipt No :</span> {{transaction.custom_receipt_id}}</small>
+                    <small><span>Transaction ID :</span> {{transaction.receipt_id}}</small>
+                    <small><span>Amount :</span> {{transaction.total_amount}} TK</small>
+
+
+                    <small><span>Due Date :</span> {{transaction.date}}</small>
+
+            </div>
+
+        </div>
+        </a>
+
+        <div class="opitons">
+
+            <div  class="dots odots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+{% endfor %}

@@ -1,0 +1,10 @@
+{% load static %}
+{% csrf_token %}
+ <button class="refresh-btn" id="refresh-btn" onclick="location_reload()" title="Refresh">Refresh</button>
+<small style="color:black; text-align:center;margin-top:4em;" class="confirm-text">**Transaction Completed. Tap view button to show.</small>
+<a target="_blank" style="color:unset;" href="{% url 'view_transaction' rec_id %}">
+<div class="search-bottom">
+
+   <button style="width:120px;" type="submit">view receipt</button>
+</div>
+</a>

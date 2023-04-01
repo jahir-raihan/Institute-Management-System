@@ -1,0 +1,143 @@
+body {
+  background: #4891ff;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.container {
+  width: 100%;
+  padding-top: 10em;
+}
+
+.container .main {
+  -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.97);
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.97);
+  border-radius: 4px;
+  padding: 1em;
+  background: white;
+  width: 300px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: auto;
+  text-align: center;
+}
+
+.container .main .logo-body .logo img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.container .email-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 250px;
+  height: 40px;
+  margin: auto;
+  background: #F0F2F5;
+  border-radius: 4px;
+  padding: .2em;
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+
+.container .email-input input {
+  border: none;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  background: #F0F2F5;
+  padding-left: 1em;
+  color: #757575;
+}
+
+img {
+  width: 20px;
+  height: 20px;
+  padding-top: .2em;
+  background: #F0F2F5;
+}
+
+.bottom {
+  margin-top: 2em;
+}
+
+.bottom p {
+  margin: 0;
+  padding: 0;
+}
+
+.bottom a {
+  margin: o;
+  padding: 0;
+  color: #ff800a;
+}
+
+.form-body{
+    position: relative;
+}
+
+
+
+.logo-text {
+  font-size: 17px;
+}
+
+.heading {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+}
+
+.heading p {
+  color: #4b4b4b;
+  width: 50px;
+  border-bottom: 1px solid black;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  border: none;
+  background: #4891ff;
+  color: white;
+  border-radius: 4px;
+  font-size: .9em;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.97);
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.97);
+}
+
+.bottom p {
+  color: #757575;
+}
+
+.error{
+  position: fixed;
+  top:0;
+  width:99%;
+
+  text-align: center;
+  background:rgb(248 215 218);
+  padding:.5em;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  z-index: 2;
+
+}
+body{
+  margin:0;
+}
+.error p{
+
+  margin:0 !important;
+  color:black;
+
+}
+/*# sourceMappingURL=login.css.map */

@@ -1,0 +1,94 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block title %} <title>View class routine
+</title>{% endblock title %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'post/css/base.css' %}"> {% endblock cssfile %}
+{% block cssfile1 %}<link rel="stylesheet" href="{% static 'post/css/result.css' %}">{% endblock cssfile1 %}
+
+
+
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+
+    {% block container_main_body %}
+            <div class="main-body">
+
+
+            <div class="main">
+                <div class="back-btn">
+                    <div class="btn" onclick="history.back()">
+                        <p style="">Back</p>
+                    </div>
+
+                </div>
+
+                <div class="create-post-body" id="search_exam_routine">
+
+                    <div class="search-top">
+                        <div class="s-top-logo">
+                            <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="">
+                        </div>
+
+                        <div class="s-top-titles">
+                            <p class="college-name">{{clg_name}}</p>
+                            <p class="info">search exam routine</p>
+
+                        </div>
+                        <div class="line" style="width:200px"></div>
+
+
+                    </div>
+                    <form id="search-exam-routine-form">
+                        {% csrf_token %}
+                        <div class="search-middle">
+
+                                <div class="select-semester-option ">
+                                        <div class="label" style="margin-top:0;">
+                                            Department :
+                                        </div>
+
+                                        <div class="s-semester">
+                                            {{form.department}}
+
+                                        </div>
+                                        
+
+                                </div>
+                                <div class="select-semester-option s-s-o2">
+                                    <div class="label s-label">
+                                        Semester :
+                                    </div>
+
+                                    <div class="s-semester">
+                                        {{form.semester}}
+
+                                    </div>
+                                    
+
+                                </div>
+                                
+
+
+                        </div>
+
+                        <div class="search-bottom">
+
+                            <button type="submit" class="result-submit-btn" >Search</button>
+                        </div>
+
+                    </form>
+
+
+                   
+                </div>
+            </div>
+        </div>
+    {% endblock container_main_body %}
+
+

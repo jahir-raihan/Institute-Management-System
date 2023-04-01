@@ -1,0 +1,141 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dashboard/css/bokeya_sheet.css' %}">
+    <title>{{title}}</title>
+     <script>
+        function window_print(){
+            var element = document.getElementById('print_btn_tra');
+            var ele = document.getElementById('instruction');
+            element.style.display = 'none';
+            ele.style.display = 'none';
+            window.print();
+            element.style.display = 'block';
+            ele.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container" style="width:fit-content">
+        <div class="heading">
+            <h2>{{title1}}  Statement</h2>
+            <h3>{{department}} ,{{semester}} Semester ( {{session}} )</h3>
+        </div>
+
+        <div class="table">
+            <table>
+                <tr>
+                    <th class="s-n">SL.NO</th>
+                    <th class="s-names">Students Name</th>
+                    <th class="r-s">Roll No</th>
+                    <th class="a-p">Amount Paid From ({{to_pay}})TK </th>
+                    <th class="r-s">Status</th>
+                </tr>
+                {% if f_type == 'Semester Fee' %}
+                    {% for d in data|dictsort:"semester_student.student.roll" %}
+                        <tr>
+                            <td class="s-n">{{forloop.counter}}</td>
+                            <td class="s-names">{{d.semester_student.student.name |title}}</td>
+                            <td class="r-s">{{d.semester_student.student.roll}}</td>
+                            <td class="a-p">{{d.paid}}</td>
+                            <td class="r-s">{{d.status}}</td>
+                        </tr>
+
+                        {% if forloop.counter == 26 or forloop.counter == 56 or forloop.counter == 86 or forloop.counter == 115 or forloop.counter == 144 or forloop.counter == 174 or forloop.counter == 204 or forloop.counter == 234 or forloop.counter == 263 or forloop.counter == 293 %}
+                            <tr class="breaker">
+                                <td class="b-td" colspan="13">&nbsp;</td>
+                            </tr>
+                            <tr class="breaker">
+                                <td class="b-td" colspan="13">&nbsp;</td>
+                            </tr>
+                        {% endif %}
+
+                    {% endfor %}
+                {% endif %}
+                {% if f_type == 'Hostel Fee' %}
+                    {% for d in data|dictsort:"hostel_student.student.roll" %}
+                        <tr>
+                            <td class="s-n">{{forloop.counter}}</td>
+                            <td class="s-names">{{d.hostel_student.student.name |title}}</td>
+                            <td class="r-s">{{d.hostel_student.student.roll}}</td>
+                            <td class="a-p">{{d.paid}}</td>
+                            <td class="r-s">{{d.status}}</td>
+                        </tr>
+
+                        {% if forloop.counter == 26 or forloop.counter == 56 or forloop.counter == 86 or forloop.counter == 115 or forloop.counter == 144 or forloop.counter == 174 or forloop.counter == 204 or forloop.counter == 234 or forloop.counter == 263 or forloop.counter == 293 %}
+                            <tr class="breaker">
+                                <td class="b-td" colspan="13">&nbsp;</td>
+                            </tr>
+                            <tr class="breaker">
+                                <td class="b-td" colspan="13">&nbsp;</td>
+                            </tr>
+                        {% endif %}
+
+                    {% endfor %}
+                {% else %}
+                    {% for d in data|dictsort:"student.roll" %}
+                        <tr>
+                            <td class="s-n">{{forloop.counter}}</td>
+                            <td class="s-names">{{d.student.name |title}}</td>
+                            <td class="r-s">{{d.student.roll}}</td>
+                            <td class="a-p">{{d.paid}}</td>
+                            <td class="r-s">{{d.status}}</td>
+                        </tr>
+
+                        {% if forloop.counter == 26 or forloop.counter == 56 or forloop.counter == 86 or forloop.counter == 115 or forloop.counter == 144 or forloop.counter == 174 or forloop.counter == 204 or forloop.counter == 234 or forloop.counter == 263 or forloop.counter == 293 %}
+                            <tr class="breaker">
+                                <td class="b-td" colspan="13">&nbsp;</td>
+                            </tr>
+                            <tr class="breaker">
+                                <td class="b-td" colspan="13">&nbsp;</td>
+                            </tr>
+                        {% endif %}
+
+                    {% endfor %}
+                {% endif %}
+
+           </table>
+        </div>
+    </div>
+    <div class="print-btn" id="print_btn_tra">
+        <button onclick="window_print()">print</button>
+    </div>
+    <div class="instruction" id="instruction">
+            <small  >Instructions for printing/saving as PDF</small>
+            <table>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Layout</td>
+                    <td>Portrait</td>
+                </tr>
+                <tr>
+                    <td>Paper Size</td>
+                    <td>A4</td>
+                </tr>
+                <tr>
+                    <td>Pages Per Sheet</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Margins/Scale</td>
+                    <td>Default</td>
+                </tr>
+                <tr>
+                    <td>Options</td>
+                    <td>Select Both</td>
+                </tr>
+                <tr>
+                    <th>Finally</th>
+                    <th>Save</th>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>

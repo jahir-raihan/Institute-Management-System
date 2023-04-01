@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        body{
+            position: relative;
+        }
+
+        .logo-txt p{
+            color:#212121;
+            font-size:1em;
+            font-weight: bold;
+            margin-left:.5em;
+        }
+        header{
+            padding:.2em 1em;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+            font-family: 'Poppins' !important;
+        }
+
+        body {
+            background: #F0F2F5;
+        }
+
+        header {
+            width: 100%;
+            background: white;
+
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        header .nav {
+
+            max-width: 1500px;
+            margin: auto;
+            padding: .2em 0;
+            align-items: center;
+        }
+        .hams .ham{
+            width:20px;
+            height:2px;
+            background:black;
+            margin-bottom: .3em;
+        }
+
+        .main{
+            width:80%;
+            margin:auto;
+            text-align: center;
+            margin-top:10%;
+        }
+        .view-receipt-btn{
+            padding:.2em 1em;
+            border:none;
+            background:#0C82EF;
+            margin-top:1em;
+            color:white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .text{
+            font-size:20px;
+            margin-bottom:.5em;
+        }
+        .r-id{
+            font-size:14px;
+
+        }
+        .r-id small{
+            color:#172577;
+        }
+        footer{
+            position:fixed;
+            bottom:0;
+            background:white;
+            width:100%;
+        }
+        .col-1{
+            display: flex;
+            align-items: center;
+
+        }
+        .col-1 .logo img{
+            width:60px;
+        }
+        .logo-txt small{
+            display: block;
+            margin-left:.5em;
+        }
+        footer{
+            text-align:center;
+            padding:1em ;
+            margin-top:5em;
+        }
+        .col {
+            color:rgb(78, 78, 78);
+        }
+        .col-title{
+            margin-bottom: .5em;
+        }
+        a{
+            color:rgb(78, 78, 78);
+            text-decoration: none;
+        }
+        a:hover{
+            color:#172577;
+            text-decoration: underline;
+        }
+        .col-1{
+                width:fit-content;
+                margin:auto;
+                display: block;
+                text-align: center;
+        }
+        .copyright{
+            font-size:13px;
+        }
+        @media only screen and (max-width:800px){
+
+
+            .col{
+
+                width:fit-content;
+                margin:auto;
+                margin-bottom: 1em;
+                text-align: center;
+            }
+            .col-title{
+                border-bottom: 1px solid rgb(78, 78, 78);;
+            }
+            .logo-txt{
+                font-size:13px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+
+            <div class="col col-1">
+                 <div class="logo">
+                     <img src="cid:Logo.jpg" alt="CPI Logo">
+
+                </div>
+                <div class="logo-txt">
+                    <p>{{clg_name}}</p>
+                    <small>Academy Road , Feni Feni-sadar</small>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main">
+            <p class="text">Your Transaction was successful .</p>
+            <p class="r-id"> Transaction Id: <small>{{receipt_id}}</small> </p>
+            <p class="r-id"> Receipt No: <small>{{custom_receipt_id}}</small> </p>
+            <a style="cursor:pointer;" href="http://{{domain}}/dashboard/transaction/view-transaction/{{receipt_id}}/"><button  class="view-receipt-btn">view receipt</button></a>
+        </div>
+    </div>
+    <footer>
+        <p class="copyright">Copyright &copy; {{year}} {{clg_name}}</p>
+    </footer>
+
+</body>
+</html>

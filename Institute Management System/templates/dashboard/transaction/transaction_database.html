@@ -1,0 +1,116 @@
+ {% load static %}
+                    <div class="filter-section">
+
+                        <div class="filter-toggle-btn">
+                            <div class="filter-toggle-left">
+                                <p>Filter</p>
+                            </div>
+
+                            <div class="filter-toggle-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19.064" height="13" viewBox="0 0 19.064 13">
+                                    <g id="Group_166" data-name="Group 166" transform="translate(-909.5 -303)">
+                                      <path id="Path_5" data-name="Path 5" d="M0,0H19.064" transform="translate(909.5 304.972)" fill="none" stroke="#707070" stroke-width="2"/>
+                                      <line id="Line_59" data-name="Line 59" x2="19.064" transform="translate(909.5 309.706)" fill="none" stroke="#707070" stroke-width="2"/>
+                                      <line id="Line_60" data-name="Line 60" x2="19.064" transform="translate(909.5 314.44)" fill="none" stroke="#707070" stroke-width="2"/>
+                                      <g id="Ellipse_19" data-name="Ellipse 19" transform="translate(921.185 303)" fill="#fff" stroke="#707070" stroke-width="1">
+                                        <circle cx="2" cy="2" r="2" stroke="none"/>
+                                        <circle cx="2" cy="2" r="1.5" fill="none"/>
+                                      </g>
+                                      <g id="Ellipse_20" data-name="Ellipse 20" transform="translate(913.888 308)" fill="#fff" stroke="#707070" stroke-width="1">
+                                        <circle cx="2" cy="2" r="2" stroke="none"/>
+                                        <circle cx="2" cy="2" r="1.5" fill="none"/>
+                                      </g>
+                                      <g id="Ellipse_21" data-name="Ellipse 21" transform="translate(921.185 312)" fill="#fff" stroke="#707070" stroke-width="1">
+                                        <circle cx="2" cy="2" r="2" stroke="none"/>
+                                        <circle cx="2" cy="2" r="1.5" fill="none"/>
+                                      </g>
+                                    </g>
+                                </svg>
+
+                            </div>
+                        </div>
+
+                        <div id="filter-toggle"  class="filter-toggle d-none">
+
+                            <div class="f-t-content">
+
+                                <div class="f-t-title">
+
+                                    <p>**Filter by days</p>
+
+                                </div>
+                                <form>
+
+                                <div class="range">
+
+
+                                    <input type="range" class="range-slide" id="rangeslide" min="1" max="364">
+
+
+                                    <p>Days : <small id="val"></small></p>
+                                    <script>
+                                        var slider = document.getElementById("rangeslide");
+                                        var output = document.getElementById("val");
+                                        output.innerHTML = slider.value;
+
+                                        slider.oninput = function() {
+                                            output.innerHTML = this.value;
+                                        }
+                                    </script>
+                                </div>
+                                </form>
+
+                                <div class="filter-btn">
+                                    <button class="f-btn">Filter</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data">
+
+                        <div class="data-title">Today /</div>
+
+                        <div class="data-content">
+                            <p>Total Cash In : {{today_in}} TK </p>
+                            <p>Total Cash Out : {{today_out}} TK</p>
+                        </div>
+                    </div>
+
+                    <div class="data">
+
+                        <div class="data-title">This month /</div>
+
+                        <div class="data-content">
+                            <p>Total Cash In : {{this_month_in}} TK </p>
+                            <p>Total Cash Out : {{this_month_out}} TK</p>
+                        </div>
+                    </div>
+                    <div class="data">
+
+                        <div class="data-title">This year /</div>
+
+                        <div class="data-content">
+                            <p>Total Cash In : {{this_year_in}} TK </p>
+                            <p>Total Cash Out : {{this_year_out}} TK</p>
+                        </div>
+                    </div>
+                    <div class="data">
+
+                        <div class="data-title">Last five years /</div>
+
+                        <div class="data-content">
+                            <p>Total Cash In : {{last_five_year_in}} TK </p>
+                            <p>Total Cash Out : {{last_five_year_out}} TK</p>
+                        </div>
+                    </div>
+                    <div class="data">
+
+                        <div class="data-title">All time /</div>
+
+                        <div class="data-content">
+                            <p>Total Cash In : {{all_time_in}} TK </p>
+                            <p>Total Cash Out : {{all_time_out}} TK</p>
+                        </div>
+                    </div>

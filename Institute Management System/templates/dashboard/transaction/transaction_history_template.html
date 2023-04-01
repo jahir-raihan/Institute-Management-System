@@ -1,0 +1,69 @@
+ {% load static %}
+
+                <form id="search-transactions-form">
+                    <div class="search-add-bar">
+
+                            {% csrf_token %}
+                            <div class="input">
+                                <input type="text" id="keyword" placeholder="Query  Transactions . . ." name="keyword">
+                            </div>
+
+
+                        <button type="submit" class="add-btn search-btn">Search</button>
+
+
+                    </div>
+                </form>
+
+                    <div class="hostel-students" id="transaction-recipients">
+                        {% for transaction in transactions %}
+
+                                <div class="h-student">
+                                    <a target="_blank" style="color:unset;" href="{% url 'view_transaction' transaction.receipt_id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+                                            {% if transaction.recipient_student %}
+                                                <img src="{{transaction.recipient_student.profile.image.url}}" alt="{{transaction.recipient}} Image">
+                                            {% else %}
+                                                <img src="{% static 'post/images/download.png' %}" alt="anonymous user">
+                                            {% endif %}
+                                        </div>
+                                        <div >
+                                            <small style="font-size:15px;"><span>Recipient  :</span> {{transaction.recipient}}</small>
+                                           <small class="paid-unpaid"><span>Type :</span> {{transaction.transaction_type}}</small>
+
+
+                                                <small><span>Receipt No :</span> {{transaction.custom_receipt_id}}</small>
+                                                <small><span>Transaction ID :</span> {{transaction.receipt_id}}</small>
+                                                <small><span>Amount :</span> {{transaction.total_amount}} TK</small>
+
+
+                                                <small><span>Due Date :</span> {{transaction.date}}</small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div onclick="s_odots({{student.student.id}})" class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div id='toggle-option{{transaction.id}}' class="option-toggle">
+                                    <a href="#">view profile</a>
+
+                                </div>
+
+                            </div>
+
+                                </div>
+
+                        {% endfor %}
+
+
+
+                    </div>

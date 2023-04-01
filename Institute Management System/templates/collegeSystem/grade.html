@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'collegeSystem/css/grade.css' %}">
+    <title>Mark Sheet</title>
+    <script>
+        function window_print(){
+            var element = document.getElementById('print_btn_r');
+            element.style.display = 'none';
+            var ele = document.getElementById('instruction');
+            ele.style.display = 'none';
+            window.print();
+            ele.style.display = 'block';
+            element.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="semester-details">
+            <p>{{result.file.exam}}, {{result.file.exam_year}}</p>
+            <p>held in the month of ({{result.file.started |date:'M,Y'}} - {{result.file.ended|date:'M,Y'}})</p>
+        </div>
+        <div class="student-info">
+            <div class="s-info-col">
+                <p>Student's Name</p>
+                <p>:</p>
+                <p class="upper">{{result.student_name.name | title}}</p>
+            </div>
+            <div class="s-info-col">
+                <p>Father's Name</p>
+                <p>:</p>
+                <p class="upper">{{result.student_name.father | title}}</p>
+            </div>
+
+            <div class="s-info-col">
+                <p>Mother's Name</p>
+                <p>:</p>
+                <p class="upper">{{result.student_name.mother | title}}</p>
+            </div>
+            <div class="s-info-col">
+                <p>Roll No</p>
+                <p>:</p>
+                <p>{{result.roll}}</p>
+            </div>
+            <div class="s-info-col">
+                <p>Registration No</p>
+                <p>:</p>
+                <p>{{result.registration}}</p>
+            </div>
+            <div class="s-info-col">
+                <p>Session</p>
+                <p>:</p>
+                <p>{{result.student_name.session}}</p>
+            </div>
+            <div class="s-info-col">
+                <p>Technology</p>
+                <p>:</p>
+                <p class="upper">{{result.student_name.department}}</p>
+            </div>
+
+            <div class="s-info-col">
+                <p>Name of the Board</p>
+                <p>:</p>
+                <p class="upper">Bangladesh Technical Education Board (BTEB)</p>
+            </div>
+            
+        </div>
+
+
+
+        <div class="grade-table">
+            <table style="border:1px solid black;">
+                <tr class="heading-row">
+                    <td class="s-l-no">SL.NO.</td>
+                    <td class="sub-code">Subject Code</td>
+                    <td class="n-o-s">Name of Subject</td>
+                    <td class="f-m">Full Mark</td>
+                    <td class="m-o">Mark Obtained</td>
+                    <td class="l-g">Letter Grade</td>
+                    <td class="g-p">Grade Point</td>
+                    <td class="g-p-a">Grade Point Average(GPA)
+                        <div class="total-gpa-abs">
+                            <p>{{result.grade_point}}</p>
+                        </div>
+                    </td>
+                </tr>
+                {% for data in mark_sheet %}
+                    <tr class="row">
+                        <td  class="s-l-no">0{{forloop.counter}}</td>
+                        <td class="sub-code">{{data.subject.subject_code}}</td>
+                        <td class="n-o-s">{{data.subject.subject_name}}</td>
+                        <td  class="f-m">{{data.subject.total_mark}}</td>
+                        <td class="m-o">{{data.mark}}</td>
+                        <td class="l-g">{{data.grade_chr}}</td>
+                        <td class="g-p">{{data.grade_point}} </td>
+
+                        <td style="border-top:none; border-bottom: none;"></td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div class="print-btn" id="print_btn_r">
+            <button onclick="window_print()">print</button>
+        </div>
+        <div class="instruction" id="instruction">
+            <small  >Instructions for printing/saving as PDF</small>
+            <table>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Layout</td>
+                    <td>Portrait</td>
+                </tr>
+                <tr>
+                    <td>Paper Size</td>
+                    <td>A4</td>
+                </tr>
+                <tr>
+                    <td>Pages Per Sheet</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <th>Margins</th>
+                    <th>51 mm From Top </th>
+                </tr>
+
+                <tr>
+                    <th>Finally</th>
+                    <th>Save</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

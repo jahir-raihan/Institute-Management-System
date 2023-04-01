@@ -1,0 +1,124 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+{% block title %} <title>Upload Exam Routine</title> {% endblock title %}
+
+{% block cssfile %}<link rel="stylesheet" href="{% static 'post/css/create.css' %}">{% endblock cssfile %}
+{% block cssfile1 %}<link rel="stylesheet" href="{% static 'post/css/result.css' %}">{% endblock cssfile1 %}
+
+{% block container_left %}
+
+    {% include 'collegeSystem/profile-left-section-nav.html' %}
+
+{% endblock container_left %}
+
+
+{% block container_main_body %}
+    <div class="main-body">
+
+                
+        <div class="main">
+            <div class="back-btn">
+                
+                <div class="btn" onclick="history.back()">
+                    <p>Back</p>
+                </div>
+                
+            </div>
+
+
+            <div class="create-post-body">
+
+                <div class="create-post-head">
+
+                    <div class="profile">
+                        <a href="#">
+                            <img src="{{request.user.profile.image.url}} " alt="">
+                        </a>
+
+                        <div class="profile-texts">
+                            <div class="p-t-left">
+                                <a href="#">
+                                    <p class="u-name">{{request.user}} </p>
+                                </a>
+                                <small>Now</small>
+                            </div>
+                            
+                            <p class="category"> <a href="#">Teacher</a></p>
+                        </div>
+                    </div>
+
+                    <div class="opitons">
+
+                        <div onclick="odots()" class="dots">
+                            <img src="{% static 'post/images/tree dots.svg' %}" alt="">
+                        </div>
+
+                        
+
+                    </div>
+
+                </div>
+
+                <form id="routine-form" onsubmit="loader('submit-text-u-exam-routine-r','content-loader-u-e-r-r', 'upload-exam-routine-submit-btn' )"  method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="select-semester-option">
+                        <div class="label" style="margin-top:0;">
+                            Select semester :
+                        </div>
+
+                        <div class="s-semester">
+                            {{form.semester}}
+
+                        </div>
+
+                    </div>
+                    <div class="select-semester-option s-s-o2">
+                        <div class="label s-label">
+                            Select department :
+                        </div>
+
+                        <div class="s-semester">
+                            {{form.department}}
+
+                        </div>
+
+                    </div>
+
+                    <div class="routine-class file">
+                        {{form.file}}
+                    </div>
+
+
+                    <div class="btns">
+
+                        <a class="btn cancel" href="#" onclick="history.back()">Cancel</a>
+
+                        <button id="upload-exam-routine-submit-btn" class="btn post"  type="submit">
+                            <p id="submit-text-u-exam-routine-r">Upload</p>
+
+                            <div id="content-loader-u-e-r-r" class="content-loader d-none">
+                                <div id="loader-d-c-u-e-r" class="loader "></div>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+                <script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                </script>
+
+            
+
+
+            
+            </div>
+        </div>
+
+
+    </div>
+{% endblock container_main_body %}
+
+

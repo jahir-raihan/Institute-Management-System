@@ -1,0 +1,243 @@
+.container {
+  max-width: 1500px;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 24% 48% 24%;
+      grid-template-columns: 24% 48% 24%;
+  gap: 1.5%;
+}
+
+.main {
+  margin-top: 2em;
+}
+
+.read-more-btn, .see-less {
+  color: Black;
+  font-size: .95em;
+  font-weight: 550;
+}
+
+.read-more-btn:hover, .see-less:hover {
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  font-style: italic;
+}
+
+.see-more {
+  display: none;
+}
+
+.d-show {
+  display: unset !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.see-less {
+  display: none;
+}
+
+.comments-section {
+  margin-top: 1.2em;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.47);
+}
+
+.comments-section .allcomment {
+  font-size: 10px;
+  text-align: center;
+  margin-top: .6em;
+}
+
+.comments-section .allcomment a {
+  color: black;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.511);
+}
+
+.comments-section .allcomment a:hover {
+  color: #0C82EF;
+}
+
+.comment-body {
+  padding-bottom: 1.4em;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.47);
+}
+
+.write-post {
+  background: white;
+  padding-bottom: 1.4em;
+  width: 500px;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 9% auto;
+      grid-template-columns: 9% auto;
+  border-radius: 4px;
+  padding: .6em;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 10px 39px -15px rgba(0, 0, 0, 0.82);
+  box-shadow: 0px 10px 39px -15px rgba(0, 0, 0, 0.82);
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 62px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.write-post img {
+  display: block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit:cover;
+  position:center;
+}
+
+.write-post a {
+  color: #505050;
+}
+
+.write-post .input {
+  height: 30px;
+  outline: none;
+  margin-left: .5em;
+  width: 100%;
+  margin-left: .2em;
+  font-size: 13px;
+  padding-left: 1.9em;
+  padding-right: .7em;
+  border-radius: 15px;
+  background: #F0F2F5;
+  padding-top: .4em;
+  cursor: pointer;
+}
+
+.right {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  height: 90vh;
+  margin-left: 2em;
+}
+
+
+
+@media only screen and (max-width: 955px) {
+  .right {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-right {
+    display: none !important;
+  }
+  .toggle {
+    display: unset;
+  }
+  .left {
+    display: none;
+    height: 0 !important;
+  }
+  #n-icon-2 {
+    display: unset !important;
+    margin-right: .2em !important;
+  }
+  #n-icon-2 .notification-icon .n-number {
+    margin-right: .6em !important;
+  }
+  .notification-toggle {
+    right: 10px;
+  }
+  .nav-right-noti-toggle-section {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .ham-bar {
+    margin-bottom: .2em;
+  }
+  .right {
+    display: none;
+  }
+  .container {
+    display: unset !important;
+  }
+  .main {
+    width: 90%;
+    margin: 1em auto;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .post-body {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  .write-comment input {
+    width: 60%;
+  }
+  .write-comment .comment-btn {
+    border-radius: 15px !important;
+    width: 30%;
+  }
+  .write-comment p {
+
+    font-size: 11px !important;
+  }
+  .write-post {
+    width: 100% !important;
+  }
+  .main {
+    width: 95% !important;
+  }
+  .option-toggle {
+    margin-left: unset !important;
+    position: absolute !important;
+    right: 10px;
+  }
+  .post-head {
+    margin-bottom: .5em;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .write-post .input {
+    width: 95%;
+    margin-left: 1.5em;
+  }
+
+}
+
+@media only screen and (max-width: 290px) {
+  .logo-text {
+    font-size: .8em !important;
+  }
+  .ham {
+    width: 20px !important;
+    margin-top: .3em !important;
+  }
+  .comment-btn p {
+    font-size: 10px !important;
+  }
+  .profile .u-name {
+    font-size: .8em !important;
+  }
+  .profile .category {
+    font-size: .6em !important;
+  }
+  .comment-right .u-name {
+    font-size: .8em !important;
+  }
+  .write-comment input {
+    font-size: .7em !important;
+  }
+}
+
+/*# sourceMappingURL=base.css.map */

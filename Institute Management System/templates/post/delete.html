@@ -1,0 +1,56 @@
+
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block title %} <title>Update post
+</title>{% endblock title %}
+
+{% block cssfile %}<link rel="stylesheet" href="{% static 'post/css/create.css' %}">{% endblock cssfile %}
+
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+
+    {% block container_main_body %}
+            <div class="main-body">
+
+
+            <div class="main">
+                <div class="back-btn">
+                    <div class="btn" onclick="history.back()">
+                        <p>Back</p>
+                    </div>
+
+                </div>
+
+
+                <div class="create-post-body">
+
+                    <form method="POST" >
+                        {% csrf_token %}
+                        <p class="confirm-text">***Are you sure you want to delete ({{post.title}}) </p>
+
+                        <div class="btns">
+
+                            <a class="btn post" onclick="history.back()">Cancel</a>
+
+                            <button type="submit" style="background:#FF3C3C;" class="btn post" >Delete</button>
+                        </div>
+                    </form>
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    {% endblock container_main_body %}
+
+

@@ -1,0 +1,73 @@
+{% load static %}
+{% csrf_token %}
+                        <button class="refresh-btn" id="refresh-btn" onclick="location_reload()" title="Refresh">Refresh</button>
+                        <div class="search-top">
+                            <div class="s-top-logo">
+                                <img draggable="false" src="{% static 'post/images/Logo.jpg' %}" alt="CPI Logo">
+                            </div>
+
+                            <div class="s-top-titles">
+                                <p class="college-name">{{clg_name}}</p>
+                                <p class="info">Make a Transaction</p>
+
+                            </div>
+                            <div style="width:201px;" class="line"></div>
+
+
+                        </div>
+                        <form  id="create-custom-transaction-form">
+                            {% csrf_token %}
+                            <div class="search-middle" id="trans-home-m-t-f">
+                                    <small class="confirm-text">**If recipient is not a student  leave roll blank.</small>
+                                    <div class="input">
+                                        <span>Recipient :</span> <input name="recipient" placeholder="Enter full name . . ."  type="text">
+                                    </div>
+                                   <div class="input">
+                                        <span>Email :</span> <input name="email" placeholder="Enter valid email . . ." type="email">
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Roll :</span> <input name="roll" placeholder="Enter roll number . . ." type="number">
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Type:</span>
+                                        <div class="select-dashboard">
+                                            <select name="transaction_type" required>
+                                                <option value="Cash In">Cash In</option>
+                                                <option value="Cash Out">Cash Out</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <small class="confirm-text">**If transaction reason is multiple click "Add New" btn.</small>
+
+                                    <div class="input" id="for-other-selection">
+                                        <span>Desc of fee:</span>
+                                        <div class="select-dashboard custom-transaction-select" id="custom-transaction-select">
+                                            {{ form.transaction_reason }}
+                                        </div>
+                                    </div>
+
+                                    <div class="input">
+                                        <span>Amount  :</span> <input name="amount" required placeholder="Enter amount . . ." type="number">
+                                    </div>
+                                    {% csrf_token %}
+                                    <a id="add-new-node-btn" style="background:#FFA25D; color:white !important;" class="btn" onclick="add_new_node()">Add New Reason</a>
+
+                            </div>
+
+                            <div class="search-bottom">
+
+
+                                <button style="width:120px;" id="create-custom-transaction" class=""  type="submit">
+                                    <p id="submit-text-c-c-trans">Create Receipt</p>
+
+                                    <div id="content-loader-c-c-tra" class="content-loader d-none">
+                                        <div id="loader-t-c-c-custom-trans" class="loader "></div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </form>

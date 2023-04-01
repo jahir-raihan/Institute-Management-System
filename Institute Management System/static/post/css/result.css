@@ -1,0 +1,333 @@
+.create-post-body .search-top {
+  width: 80%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.create-post-body .search-top .s-top-logo img {
+  width: 100px;
+  color: #4e4646;
+}
+
+.create-post-body .search-top .s-top-titles p {
+  letter-spacing: .1em;
+  color: black;
+  margin-top: 1em;
+  text-transform: uppercase;
+}
+.s-s-b-n{
+    background:unset !important;
+
+}
+.s-s-b-n input{
+    padding-left:1em;
+}
+
+.create-post-body .search-top .s-top-titles .college-name {
+  font-weight: 550;
+}
+
+.create-post-body .search-top .line {
+  width: 130px;
+  height: 1px;
+  background: black;
+  margin: auto;
+}
+
+.create-post-body .search-middle {
+  width: 80%;
+  margin: 2em auto;
+}
+
+.create-post-body .search-middle .input, .create-post-body .search-middle .grade, .create-post-body .search-middle .status {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.create-post-body .search-middle .input span, .create-post-body .search-middle .grade span, .create-post-body .search-middle .status span {
+  display: block;
+  opacity: 80%;
+}
+
+.create-post-body .search-middle .input input, .create-post-body .search-middle .grade input, .create-post-body .search-middle .status input {
+  height: 35px;
+  width: 70%;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  background: #f5f5f5;
+  padding: 0 1em;
+  padding-left: 1.5em;
+  font-size: .7em;
+}
+
+.create-post-body .search-middle .grade, .create-post-body .search-middle .status {
+  margin-top: 1.5em;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.create-post-body .search-middle .grade .label, .create-post-body .search-middle .status .label {
+  margin-right: 17%;
+}
+
+.create-post-body .search-middle .grade .grade-point, .create-post-body .search-middle .status .grade-point {
+  color: black;
+}
+
+.create-post-body .search-middle .status .grade-status {
+  color: #3ec96c;
+}
+
+.create-post-body .search-middle .select-semester-option {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 30% 60%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.select-semester-option {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40% 50%;
+      grid-template-columns: 30% 60%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#warning-msg{
+    text-align:center;
+    color:black;
+    margin-top:2em;
+}
+
+.s-s-o2 .s-semester{
+  margin-top:1em;
+}
+.s-s-o2{
+ align-items:center;
+}
+.s-label{
+    margin-top:1em;
+}
+.s-s-o{
+    display:flex !important;
+}
+
+.create-post-body .search-middle .select-semester-option .label {
+  opacity: 80%;
+}
+
+.label {
+  margin-top:1em;
+  opacity: 80%;
+}
+
+.create-post-body .search-middle .s-semester {
+  margin-left: 2em;
+  border-radius: 30px;
+  padding-right: .5em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: #f1f1f1;
+}
+
+.s-semester {
+  margin-left: 2em;
+  border-radius: 30px;
+  padding-right: .5em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: #f1f1f1;
+}
+
+.create-post-body .search-middle .s-semester select {
+  border-radius: 30px;
+  height: 35px;
+  width: 200px;
+  border: none;
+  background: #f5f5f5;
+  padding: .3em;
+  padding-left: 1em;
+  font-size: .75em;
+  outline: none;
+  font-size: .7em;
+  opacity: 60%;
+}
+
+.create-post-body .search-bottom {
+  width: 80%;
+  text-align: center;
+  margin: 1em auto;
+  margin-bottom: 2em;
+}
+
+.create-post-body .search-bottom button {
+  width: 100px;
+  border: none;
+  height: 30px;
+  border-radius: 4px;
+  background: #0093FF;
+  color: white;
+  font-weight: 545;
+  cursor: pointer;
+}
+
+.content-loader{
+   height:20px;
+   width:20px;
+   width:fit-content;
+   margin:auto;
+}
+
+.loader{
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid black;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin .5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+@media only screen and (max-width: 955px) {
+  .right {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-right {
+    display: none !important;
+  }
+
+  .toggle {
+    display: unset;
+  }
+  .left {
+    display: none;
+    height: 0 !important;
+  }
+  .ham-bar {
+    margin-bottom: .2em;
+  }
+  .right {
+    display: none;
+  }
+  .container {
+    display: unset !important;
+  }
+  .main {
+    width: 90%;
+    margin: 1em auto;
+  }
+  .back-btn {
+    min-width: unset !important;
+    max-width: unset !important;
+    width: 100% !important;
+  }
+  .create-post-body .search-middle .s-semester {
+    width:100%;
+
+  }
+  .create-post-body .search-middle .s-semester select{
+    width:100%;
+  }
+  .s-semester select{
+    width:100%;
+  }
+  .s-s-ur select{
+    width:325px;
+  }
+}
+
+
+
+@media only screen and (max-width: 575px) {
+  .create-post-body {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  .main {
+    width: 95% !important;
+  }
+  .create-post-head {
+    margin-bottom: .5em;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .input {
+    display: block !important;
+  }
+  .s-s-o2 .s-semester{
+    margin-top:0em !important;
+  }
+  .s-s-ur select{
+    width:100%;
+  }
+  .s-s-o2{
+    margin-top:1em !important;
+  }
+  .input input {
+    border-radius: 4px !important;
+    width: 100% !important;
+  }
+  .search-add-bar .input input{
+    border-radius:22px !important;
+
+  }
+  .input span {
+    margin-bottom: .2em;
+  }
+  .select-semester-option {
+    display: block !important;
+  }
+  .select-semester-option .label {
+    margin-bottom: .2em;
+  }
+  .s-semester {
+    width:100% !important;
+    border-radius: 4px !important;
+    margin-left: unset !important;
+  }
+  .s-semester select {
+    border-radius: 4px !important;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .logo-text {
+    font-size: .8em !important;
+  }
+  .ham {
+    width: 20px !important;
+    margin-top: .3em !important;
+  }
+}
+/*# sourceMappingURL=search_result.css.map */

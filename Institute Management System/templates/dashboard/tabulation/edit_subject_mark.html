@@ -1,0 +1,94 @@
+{% extends 'post/base.html' %}
+
+{% load static %}
+
+{% block title %} <title id="hostel-title">Edit Subject Mark</title>{% endblock title %}
+{% block cssfile %} <link rel="stylesheet" href="{% static 'hostel/css/hostel.css' %}">{% endblock cssfile %}
+{% block cssfile2 %} <link rel="stylesheet" href="{% static 'post/css/base.css' %}"> {% endblock cssfile2 %}
+{% block cssfile3 %} <link rel="stylesheet" href="{% static 'post/css/result.css' %}">{% endblock cssfile3 %}
+
+
+    {% block container_left %}
+        {% include 'post/left_nav.html' %}
+
+    {% endblock container_left %}
+
+    {% block container_main_body %}
+        <div class="main-body">
+
+
+            <div class="main">
+                <div class="back-btn">
+                    <a onclick="history.back()">
+                    <div class="btn">
+                        <p>Back</p>
+                    </div></a>
+
+                </div>
+
+
+
+                <div class="create-post-body" id="update-subject-mark">
+
+
+                    <p style="color:black; margin-top:.5em;"><span style="font-weight:bold">T C A </span> = Theory Cont. Asses  &  <span style="font-weight:bold"> T F E</span> = Theory Final Exam .<br>
+                    <span style="font-weight:bold"> P C A </span> = Practical Cont. Asses & <span style="font-weight:bold"> P F E</span> = Practical Final Exam .
+                    </p>
+                    <div class="line"></div>
+                    <form id="update-subject-mark-form" sub_id="{{sub.id}}">
+                        {% csrf_token %}
+                        <div class="search-middle" style="margin-bottom:-1em; width:95%">
+                            <div class="input">
+                                <span>Current Mark :</span> <input name="mark" disabled id="mark" value="{{sub.mark}} Mark Obtained From {{sub.subject.total_mark}}" type="text">
+                            </div>
+                            <div class="input">
+                                {% if sub.s_t_c_asses_obt == 0 %}
+                                <span>T C A ({{sub.subject.s_t_t_c_asses}}) :</span> <input disabled name="tca"  id="t-c-a" value="{{sub.s_t_c_asses_obt}}" type="number">
+                                {% else %}
+                                    <span>T C A ({{sub.subject.s_t_t_c_asses}}) :</span> <input  name="tca"  id="t-c-a" value="{{sub.s_t_c_asses_obt}}" type="number">
+                                {% endif %}
+                            </div>
+                             <div class="input">
+                                 {% if sub.s_t_f_exam_obt == 0 %}
+                                    <span>T F E ({{sub.subject.s_t_t_f_exam}}) :</span> <input disabled name="tfe"  id="t-f-e" value="{{sub.s_t_f_exam_obt}}" type="number">
+                                 {% else %}
+                                    <span>T F E  ({{sub.subject.s_t_t_f_exam}}) :</span> <input name="tfe"  id="t-f-e" value="{{sub.s_t_f_exam_obt}}" type="number">
+                                 {% endif %}
+                            </div>
+                             <div class="input">
+                                 {% if sub.s_p_c_asses_obt == 0 %}
+                                    <span>P C A ({{sub.subject.s_p_t_c_asses}}) :</span> <input disabled name="pca"  id="p-c-a" value="{{sub.s_p_c_asses_obt}}" type="number">
+                                 {% else %}
+                                     <span>P C A  ({{sub.subject.s_p_t_c_asses}}):</span> <input name="pca"  id="p-c-a" value="{{sub.s_p_c_asses_obt}}" type="number">
+                                 {% endif %}
+                            </div>
+                             <div class="input">
+                                 {% if sub.s_p_f_exam_obt == 0 %}
+                                    <span>P F E  ({{sub.subject.s_p_t_f_exam}}) :</span> <input disabled name="pfe"  id="p-f-e" value="{{sub.s_p_f_exam_obt}}" type="number">
+                                 {% else %}
+                                    <span>P F E  ({{sub.subject.s_p_t_f_exam}}) :</span> <input  name="pfe"  id="p-f-e" value="{{sub.s_p_f_exam_obt}}" type="number">
+                                 {% endif %}
+                            </div>
+                             <div class="search-bottom">
+
+                                <button id="teacher-register-submit-btn" class=""  type="submit">
+                                    <p id="submit-text-e-sub-mark">Update</p>
+
+                                    <div id="content-loader-e-sub-mark" class="content-loader d-none">
+                                        <div id="loader-d-c-e-sub-mark" class="loader "></div>
+                                    </div>
+                                </button>
+                             </div>
+                        </div>
+                     </form>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    {% endblock container_main_body %}
+    {% block container_right %}
+
+    {% endblock container_right %}

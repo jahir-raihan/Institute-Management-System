@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'user/css/login.css' %}">
+    <title>Login</title>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+</head>
+<body>
+    {% if msg %}
+        <div class="error">
+            <p>{{err}}</p>
+        </div>
+    {% endif %}
+    <div class="container">
+
+        <div class="main">
+
+            <div class="form-body">
+               <div class="logo-body">
+                    <div class="logo">
+                        <img src="{% static 'post/images/logo-cpi.png' %}" alt="">
+                    </div>
+                    <div class="logo-text">Compact Polytechnic Institute</div>
+
+
+                </div>
+                <div class="heading">
+                    <p >Login</p>
+                </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="email-input">
+                        <div class="icon"><img draggable="false" src="{% static 'user/images/envelope.svg' %}" alt=""></div>
+                        <input type="email" placeholder="Email" required name="email">
+                    </div>
+                    <div class="email-input">
+                        <div class="icon"><img draggable="false" src="{% static 'user/images/lock.svg' %}" alt=""></div>
+                        <input type="password" placeholder="Password" required name="password">
+                    </div>
+
+                    <button type="submit">Login</button>
+
+                </form>
+
+                <div class="bottom">
+                    <p>Don't have an account ?</p>
+                    <a style="color:#172577; margin-top:.5em;display:block;" href="{% url 'register' %}">Register Now</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

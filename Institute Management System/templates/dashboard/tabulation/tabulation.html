@@ -1,0 +1,1006 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon"  href="{% static 'post/images/logo-cpi.png' %}" type="image/icon type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabulation Sheet of {{up_file.exam|title}} department of {{up_file.department}} session {{up_file.session}}</title>
+    <link rel="stylesheet" href="{% static 'dashboard/css/tabulation.css' %}">
+    <script>
+        function window_print(){
+            var element = document.getElementById('print-btn-tab');
+            element.style.display = 'none';
+            var ele = document.getElementById('instruction');
+            ele.style.display = 'none';
+            window.print();
+            ele.style.display = 'block';
+            element.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+     <div class="print-btn" id="print-btn-tab">
+        <button onclick="window_print()">Print</button>
+    </div>
+    <div class="container">
+
+        <div class="tabulation-sheet">
+
+            <div class="tabulation-head">
+
+                <div class="left" style="margin-left:30%;">
+                    <h1 class="clg-name">{{clg_name}}</h1>
+                    <p class="dep-name">Department of  {{up_file.department}}</p>
+                    <p class="tab-info">Tabulation Sheet of Diploma Engineering {{up_file.exam |title}} {{up_file.exam_year}},</p>
+                    <p class="held-in">Held in month of {{up_file.started |date:'F Y'}} to {{up_file.ended|date:'F Y'}}, Session {{up_file.session}}</p>
+                </div>
+
+                <div class="right">
+                    <table>
+                        <tr>
+                            <td>Range of Marks</td>
+                            <td>Grade</td>
+                            <td>Point</td>
+                        </tr>
+                        <tr>
+                            <td>80 or above</td>
+                            <td>A+</td>
+                            <td>4.00</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>75 - below 80</td>
+                            <td>A</td>
+                            <td>3.75</td>
+                        </tr>
+                        <tr>
+                            <td>70 - below 75</td>
+                            <td>B+</td>
+                            <td>3.50</td>
+                        </tr>
+                        <tr>
+                            <td>65 - below 70</td>
+                            <td>B</td>
+                            <td>3.25</td>
+                        </tr>
+                        <tr>
+                            <td>60 - below 65</td>
+                            <td>B-</td>
+                            <td>3.00</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>Range of Marks</td>
+                            <td>Grade</td>
+                            <td>Point</td>
+                        </tr>
+                        <tr>
+                            <td>55 - below 60</td>
+                            <td>B-</td>
+                            <td>2.75</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>50 - below 55</td>
+                            <td>C+</td>
+                            <td>2.50</td>
+                        </tr>
+                        <tr>
+                            <td>45 - below 50</td>
+                            <td>C</td>
+                            <td>2.25</td>
+                        </tr>
+                        <tr>
+                            <td>40 - below 45</td>
+                            <td>D</td>
+                            <td>2.00</td>
+                        </tr>
+                        <tr>
+                            <td>Below 40</td>
+                            <td>F</td>
+                            <td>0.00</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="table">
+
+               <div class="table-top">
+
+                   <div class="sl">
+
+                       <p>SL.NO</p>
+
+                   </div>
+
+                   <div class="reg-no">
+                       <p>Reg. No</p>
+                   </div>
+
+                   <div class="s-name">
+                       <p>Student Name</p>
+                   </div>
+
+                   <div class="sub-exam-desc-t">
+
+                       <div class="sub-t">
+                           <p>Subject</p>
+                       </div>
+
+                       <div class="exam-desc-t">
+                           <p>Exam. Description</p>
+                       </div>
+
+
+                   </div>
+
+                    <!-- Looping through the subject list. -->
+                   {% for sub in subjects %}
+
+                       <div class="sub-exam-desc">
+
+
+
+                           <div class="sub-n">
+                              <p>{{sub.subject}}</p>
+                           </div>
+
+                           <div class="exam-desc">
+
+                               <div class="s-t">
+
+                                   <div class="s-t-t">
+                                       <p>Theory</p>
+                                   </div>
+                                   <div class="row-flex">
+                                       <div class="row r1">
+                                           <p>Cont. Asses</p>
+                                       </div>
+                                       <div class="row r2">
+                                           <p>Final Exam</p>
+                                       </div>
+                                   </div>
+
+
+
+                               </div>
+
+                               <div class="s-p">
+
+                                   <div class="s-p-t">
+                                        <p>Practical</p>
+                                   </div>
+                                   <div class="row-flex">
+                                        <div class="row r1">
+                                            <p>Cont. Asses</p>
+                                        </div>
+                                        <div class="row r2">
+                                            <p>Final </p>
+                                        </div>
+                                    </div>
+
+
+                                   </div>
+                               <div class="sub-total-title">
+                                   <div class="total-text">
+                                       <p>Total</p>
+                                   </div>
+
+
+                               </div>
+                           </div>
+                       </div>
+                   {% endfor %}
+                   <!-- End of subject loop -->
+
+
+
+                   <div class="g-p-r-s">
+
+                        
+                        <div class="GPA">
+                            <div class="gpa-text">
+                                <p>GPA</p>
+                            </div>
+                        </div>
+                        <div class="p-of-gpa">
+                            <div class="p-o-marks-gpa">
+                                <p>Percentage of GPA</p>
+                            </div>
+                        </div>
+                        <div class="remarks">
+                            <div class="remarks-txt">
+                                <p>Remarks</p>
+                            </div>
+                        </div>
+                   </div>
+
+               </div>
+
+               <div class="mark-infos">
+                    <div class="m-i-r1">
+                        <div class="blank1"></div>
+                        <div class="blank2"></div>
+                        <div class="blank3"></div>
+                        <div class="full-marks">
+                            <p>Full Marks</p>
+                        </div>
+
+                        {% for sub in subjects %}
+                            <div class="s-marks">
+
+                                <div class="t-c-a-mark mark">
+                                    <p>{{sub.subject.s_t_t_c_asses}}</p>
+                                </div>
+
+                                <div class="t-f-mark mark">
+                                    <p>{{sub.subject.s_t_t_f_exam}}</p>
+                                </div>
+
+                                <div class="p-c-a-mark mark">
+                                    <p>{{sub.subject.s_p_t_c_asses}}</p>
+                                </div>
+
+                                <div class="p-f-mark mark">
+                                    <p>{{sub.subject.s_p_t_f_exam}}</p>
+                                </div>
+
+                                <div class="s-t-mark">
+                                    <p>{{sub.subject.total_mark}}</p>
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                        <div class="gpa-section">
+
+                            <div class="gpa-point">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="per-of-gpa">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="remarks-bl">
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="m-i-r1">
+                        <div class="blank1"></div>
+                        <div class="blank2"></div>
+                        <div class="blank3"></div>
+                        <div class="full-marks">
+                            <p>Pass Marks</p>
+                        </div>
+
+                        {% for sub in subjects %}
+                            <div class="s-marks">
+
+                                <div class="t-c-a-mark mark">
+                                    <p>{{sub.subject.sub_t_c_a_pass_mark}}</p>
+                                </div>
+
+                                <div class="t-f-mark mark">
+                                    <p>{{sub.subject.sub_t_f_e_pass_mark}}</p>
+                                </div>
+
+                                <div class="p-c-a-mark mark">
+                                    <p>{{sub.subject.sub_p_c_a_pass_mark}}</p>
+                                </div>
+
+                                <div class="p-f-mark mark">
+                                    <p>{{sub.subject.sub_p_f_e_pass_mark}}</p>
+                                </div>
+
+                                <div class="s-t-mark">
+                                    <p>{{sub.subject.total_mark_to_pass}}</p>
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                        <div class="gpa-section">
+
+                            <div class="gpa-point">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="per-of-gpa">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="remarks-bl">
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="m-i-r1">
+                        <div class="blank1"></div>
+                        <div class="blank2"></div>
+                        <div class="blank3"></div>
+                        <div class="full-marks">
+                            <p>B. Roll</p>
+                        </div>
+
+                        <div class="s-marks">
+
+                            <div class="t-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="t-f-mark mark">
+                                
+                            </div>
+
+                            <div class="p-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="p-f-mark mark">
+                               
+                            </div>
+
+                            <div class="s-t-mark">
+                                
+                            </div>
+
+                        </div>
+                        <div class="s-marks">
+
+                            <div class="t-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="t-f-mark mark">
+                                
+                            </div>
+
+                            <div class="p-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="p-f-mark mark">
+                               
+                            </div>
+
+                            <div class="s-t-mark">
+                                
+                            </div>
+
+                        </div>
+                        <div class="s-marks">
+
+                            <div class="t-c-a-mark mark">
+                               
+                            </div>
+
+                            <div class="t-f-mark mark">
+                                
+                            </div>
+
+                            <div class="p-c-a-mark mark">
+                               
+                            </div>
+
+                            <div class="p-f-mark mark">
+                                
+                            </div>
+
+                            <div class="s-t-mark">
+                               
+                            </div>
+
+                        </div>
+                        <div class="s-marks ">
+
+                            <div class="t-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="t-f-mark mark">
+                                
+                            </div>
+
+                            <div class="p-c-a-mark mark">
+                               
+                            </div>
+
+                            <div class="p-f-mark mark">
+                                
+                            </div>
+
+                            <div class="s-t-mark">
+                                
+                            </div>
+
+                        </div>
+                        <div class="s-marks">
+
+                            <div class="t-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="t-f-mark mark">
+                                
+                            </div>
+
+                            <div class="p-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="p-f-mark mark">
+                               
+                            </div>
+
+                            <div class="s-t-mark">
+                               
+                            </div>
+
+                        </div>
+                        <div class="s-marks">
+
+                            <div class="t-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="t-f-mark mark">
+                                
+                            </div>
+
+                            <div class="p-c-a-mark mark">
+                                
+                            </div>
+
+                            <div class="p-f-mark mark">
+                               
+                            </div>
+
+                            <div class="s-t-mark">
+                               
+                            </div>
+
+                        </div>
+                        <div class="s-marks">
+
+                            <div class="t-c-a-mark mark">
+                               
+                            </div>
+
+                            <div class="t-f-mark mark">
+                               
+                            </div>
+
+                            <div class="p-c-a-mark mark">
+                               
+                            </div>
+
+                            <div class="p-f-mark mark">
+                                
+                            </div>
+
+                            <div class="s-t-mark">
+                                
+                            </div>
+
+                        </div>
+                        <div class="gpa-section">
+
+                            <div class="gpa-point">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="per-of-gpa">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="remarks-bl">
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+
+               </div>
+
+               <div class="student-data">
+
+                   {% for result in results %}
+
+                     {% if forloop.counter == 9  or forloop.counter == 24 or forloop.counter == 39 or forloop.counter == 54 or forloop.counter == 69 or forloop.counter == 84 or forloop.counter == 99 or forloop.counter == 114 or forloop.counter == 129 or forloop.counter == 144 or forloop.counter == 159 or forloop.counter == 174 or forloop.counter == 189 or forloop.counter == 204 or forloop.counter == 219 or forloop.counter == 234 or forloop.counter == 249 or forloop.counter == 264 or forloop.counter == 279 or forloop.counter == 294 or forloop.counter == 309 %}
+                         <!-- This div will be used when 9 student data will encounter per page. -->
+                         <div class="s-d-row s-d-row-nine">
+
+                            <div class="sl-no">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="registration">
+                                <p>&nbsp;</p>
+                            </div>
+
+                            <div class="student-name">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="s-b-roll">
+                                <p>&nbsp;</p>
+                            </div>
+
+                            <div class="s-sub-marks">
+
+                                <div class="t-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="t-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="total-m-g-point">
+
+                                    <div class="m-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-l-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-p-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="s-sub-marks">
+
+                                <div class="t-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="t-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="total-m-g-point">
+
+                                    <div class="m-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-l-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-p-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="s-sub-marks">
+
+                                <div class="t-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="t-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="total-m-g-point">
+
+                                    <div class="m-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-l-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-p-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="s-sub-marks">
+
+                                <div class="t-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="t-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="total-m-g-point">
+
+                                    <div class="m-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-l-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-p-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="s-sub-marks">
+
+                                <div class="t-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="t-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="total-m-g-point">
+
+                                    <div class="m-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-l-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-p-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="s-sub-marks">
+
+                                <div class="t-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="t-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="total-m-g-point">
+
+                                    <div class="m-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-l-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-p-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="s-sub-marks">
+
+                                <div class="t-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="t-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-c-asses s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="p-f-e s-m-c">
+                                    <p>&nbsp;</p>
+                                </div>
+
+                                <div class="total-m-g-point">
+
+                                    <div class="m-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-l-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                    <div class="g-p-obt">
+                                        <p>&nbsp;</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="gpa-section">
+
+                                <div class="gpa-point">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <div class="per-of-gpa">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <div class="remarks-bl">
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                          <!-- End of blank student data row  -->
+                     {% else %}
+                         <div class="s-d-row">
+
+                            <div class="sl-no">
+                                <p>{{forloop.counter}}</p>
+                            </div>
+                            <div class="registration">
+                                <p>{{result.registration}}</p>
+                            </div>
+
+                            <div class="student-name">
+                                <p>{{result.student_name.name|title}}</p>
+                            </div>
+                            <div class="s-b-roll">
+                                <p>{{result.roll}}</p>
+                            </div>
+
+                             {% for sub in result.storegrade_set.all %}
+                                <div class="s-sub-marks">
+
+                                <div class="t-c-asses s-m-c">
+                                    <p>{{sub.s_t_c_asses_obt}}</p>
+                                </div>
+
+                                <div class="t-f-e s-m-c">
+                                    <p>{{sub.s_t_f_exam_obt}}</p>
+                                </div>
+
+                                <div class="p-c-asses s-m-c">
+                                    <p>{{sub.s_p_c_asses_obt}}</p>
+                                </div>
+
+                                <div class="p-f-e s-m-c">
+                                    <p>{{sub.s_p_f_exam_obt}}</p>
+                                </div>
+
+                                <div class="total-m-g-point">
+
+                                    <div class="m-obt">
+                                        <p>{{sub.mark}}</p>
+                                    </div>
+
+                                    <div class="g-l-obt">
+                                        <p>{{sub.grade_chr}}</p>
+                                    </div>
+
+                                    <div class="g-p-obt">
+                                        <p>{{sub.grade_point}}</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                             {% endfor %}
+
+
+
+
+                            <div class="gpa-section">
+
+                                <div class="gpa-point">
+                                    <p>{{result.grade_point}}</p>
+                                </div>
+                                <div class="per-of-gpa">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <div class="remarks-bl">
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                         </div>
+                     {% endif %}
+                   {% endfor %}
+
+               </div>
+
+
+               
+
+            </div>
+
+            <div class="tabulation-bottom">
+                <div class="t-f-sing-opt">
+                    <div class="up-dot">
+                        <p>. . . . . . . . . . . . .</p>
+                    </div>
+                    <p class="t-b-sm">Tabulator</p>
+                </div>
+                 <div class="t-f-sing-opt">
+                    <div class="up-dot">
+                        <p>. . . . . . . . . . . . . </p>
+                    </div>
+                    <p class="t-b-sm">Checked by</p>
+                </div>
+                 <div class="t-f-sing-opt">
+                    <div class="up-dot">
+                        <p>. . . . . . . . . . . . . . . .  . .</p>
+                    </div>
+                    <p class="t-b-sm">C.I/Head of the Dept</p>
+                </div>
+                <div class="t-f-sing-opt">
+                    <div class="up-dot">
+                        <p>. . . . . . . . . . . . . . . . . . . . . . . . . .</p>
+                    </div>
+                    <p class="t-b-sm">Member of Academic Council</p>
+                </div>
+
+                <div class="numbered-sing-opt">
+                    <div class="n-s-opt">
+                        <p class="t-b-sm">1</p>
+                        <p>. . . . . . </p>
+                    </div>
+                     <div class="n-s-opt">
+                        <p class="t-b-sm">2</p>
+                        <p>. . . . . . </p>
+                    </div>
+                     <div class="n-s-opt">
+                        <p class="t-b-sm">3</p>
+                        <p>. . . . . . </p>
+                    </div>
+                </div>
+                <div class="numbered-sing-opt">
+                    <div class="n-s-opt">
+                        <p class="t-b-sm">4</p>
+                        <p>. . . . . . </p>
+                    </div>
+                     <div class="n-s-opt">
+                        <p class="t-b-sm">5</p>
+                        <p>. . . . . . </p>
+                    </div>
+                     <div class="n-s-opt">
+                        <p class="t-b-sm">6</p>
+                        <p>. . . . . . </p>
+                    </div>
+                </div>
+                <div class="numbered-sing-opt">
+                    <div class="n-s-opt">
+                        <p class="t-b-sm">7</p>
+                        <p>. . . . . . </p>
+                    </div>
+                     <div class="n-s-opt">
+                        <p class="t-b-sm">8</p>
+                        <p>. . . . . . </p>
+                    </div>
+                     <div class="n-s-opt">
+                        <p class="t-b-sm">9</p>
+                        <p>. . . . . . </p>
+                    </div>
+                </div>
+                <div class="numbered-sing-opt">
+                    <div class="n-s-opt">
+                        <p class="t-b-sm">10</p>
+                        <p>. . . . . . </p>
+                    </div>
+                     <div class="n-s-opt">
+                        <p class="t-b-sm">11</p>
+                        <p>. . . . . . </p>
+                    </div>
+                     <div class="n-s-opt">
+                        <p class="t-b-sm">12</p>
+                        <p>. . . . . . </p>
+                    </div>
+                </div>
+
+                <div class="t-f-sing-opt">
+                    <div class="up-dot">
+                        <p>. . . . . . . . . . . . . . .</p>
+                    </div>
+                    <p class="t-b-sm">Vice Principal</p>
+                </div>
+                 <div class="t-f-sing-opt">
+                    <div class="up-dot">
+                        <p>. . . . . . . . . . . . .</p>
+                    </div>
+                    <p class="t-b-sm">Principal</p>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="instruction" id="instruction">
+            <small  >Instructions for printing/saving as PDF</small>
+            <table>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Layout</td>
+                    <td>Landscape</td>
+                </tr>
+                <tr>
+                    <td>Paper Size</td>
+                    <td>Legal</td>
+                </tr>
+
+
+
+                <tr>
+                    <th>Finally</th>
+                    <th>Save</th>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>

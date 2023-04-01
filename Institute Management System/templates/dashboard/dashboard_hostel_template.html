@@ -1,0 +1,44 @@
+                        {% for student in students %}
+
+                                <div class="h-student">
+                                    <a style="color:unset;" href="{% url 'update_hostel_fee' student.id %}">
+                                    <div class="h-s-left">
+                                        <div class="img">
+                                            <img src="{{ student.student.profile.image.url }}" alt="">
+                                        </div>
+                                        <div >
+                                            <p class="name">{{student.student.name}}</p>
+                                            <small class="paid-unpaid"><span>Status :</span> {{student.payment_status}}</small>
+
+
+
+                                                <small><span>Roll :</span> {{student.student.roll}}</small>
+                                                <small><span>Semester :</span> {{student.student.semester}}</small>
+
+
+                                                <small><span>Department :</span> {{student.student.department}}</small>
+
+                                        </div>
+
+                                    </div>
+                                    </a>
+
+                                    <div class="opitons">
+
+                                <div onclick="h_odots({{student.student.id}})" class="dots odots">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+
+                                <div id='toggle-option{{student.student.id}}' class="option-toggle">
+                                    <a href="{% url 'profile' student.student.id %}">view profile</a>
+
+                                </div>
+
+                            </div>
+
+
+                            </div>
+
+                        {% endfor %}

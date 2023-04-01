@@ -1,0 +1,542 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins';
+}
+
+table {
+  font-size: 11px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin-left: 1em;
+}
+
+td {
+  border: 1px solid black;
+  text-align: center;
+  padding: .3em .5em;
+}
+
+.container {
+  width: 1600px;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.tabulation-head {
+  margin-bottom: .5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.tabulation-head .left {
+  padding-top: 1.7em;
+  margin: auto;
+  text-align: center;
+}
+
+.tabulation-head .left h1 {
+  font-size: 27px;
+}
+
+.tabulation-head .left .clg-name {
+  letter-spacing: 1px;
+  font-weight: normal;
+  margin-bottom: .1em;
+}
+
+.tabulation-head .left .dep-name {
+  font-size: 20px;
+  margin-bottom: .1em;
+}
+
+.tabulation-head .left .tab-info {
+  font-size: 16px;
+  margin-bottom: .1em;
+}
+
+.tabulation-head .left .held-in {
+  font-size: 14px;
+}
+
+.tabulation-head .right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tabulation-head .right table td {
+  font-size: 11px;
+}
+
+.table {
+  font-size: 11px !important;
+}
+
+.table .table-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid black;
+  border-bottom: none;
+}
+
+.table .table-top .sl, .table .table-top .reg-no, .table .table-top .s-name {
+  width: 40px;
+  height: 155px;
+  border: none;
+  border-right: 1px solid black;
+}
+
+.table .table-top .sl p, .table .table-top .reg-no p, .table .table-top .s-name p {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  margin-top: 6em;
+}
+
+.table .table-top .reg-no {
+  width: 120px;
+}
+
+.table .table-top .s-name {
+  width: 180px;
+}
+
+.table .table-top .sub-exam-desc-t {
+  width: 140px;
+}
+
+.table .table-top .sub-exam-desc-t .sub-t {
+  text-align: center;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 65px;
+}
+
+.table .table-top .sub-exam-desc-t .sub-t p {
+  padding-top: 20px;
+}
+
+.table .table-top .sub-exam-desc-t .exam-desc-t {
+  border-right: 1px solid black;
+  height: 90px;
+  text-align: center;
+}
+
+.table .table-top .sub-exam-desc-t .exam-desc-t p {
+  padding-top: 35px;
+}
+
+.table .table-top .sub-exam-desc {
+  width: 170px;
+}
+
+.table .table-top .sub-exam-desc .sub-n {
+  text-align: center;
+  border: none;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 65px;
+  padding: .3em;
+}
+
+.table .table-top .sub-exam-desc .sub-n p {
+  padding: calc(100% - 92%) 0;
+}
+
+.table .table-top .sub-exam-desc .exam-desc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.table .table-top .sub-exam-desc .exam-desc .s-t-t, .table .table-top .sub-exam-desc .exam-desc .s-p-t {
+  border: 1px solid black;
+  border-left: none;
+  border-top: none;
+  text-align: center;
+  position: relative;
+  padding: 0 .3em;
+  width: 58px;
+}
+
+.table .table-top .sub-exam-desc .exam-desc .row-flex {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.table .table-top .sub-exam-desc .exam-desc .row-flex .r1 {
+  position: absolute;
+  right: 0;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  width: 73px;
+  margin-top: 2em;
+  border: 1px solid black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  padding: .5em 0;
+  padding-left: .3em;
+  margin-right: .6em;
+}
+
+.table .table-top .sub-exam-desc .exam-desc .row-flex .r2 {
+  position: absolute;
+  left: 0;
+  border: 1px solid black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-top: 2em;
+  padding: .5em 0;
+  padding-bottom: .3em;
+  padding-left: .3em;
+  margin-left: .7em;
+  width: 73px;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.table .table-top .sub-exam-desc .exam-desc .sub-total-title {
+  position: relative;
+  width: 35px;
+  border: none;
+  border-right: 1px solid black;
+  height: 90px;
+}
+
+.table .table-top .sub-exam-desc .exam-desc .sub-total-title .total-text {
+  position: absolute;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  margin-top: 3.5em;
+  margin-left: .45em;
+  padding-bottom: .3em;
+}
+
+.table .table-top .sub-exam-desc .exam-desc .sub-total-title .total-text p {
+  font-weight: bold;
+}
+
+.table .table-top .g-p-r-s {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 33% 33% 33%;
+      grid-template-columns: 33% 33% 33%;
+}
+
+.table .table-top .g-p-r-s .GPA {
+  position: relative;
+  border-right: 1px solid black;
+}
+
+.table .table-top .g-p-r-s .GPA .gpa-text {
+  position: absolute;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  margin-top: 6em;
+  padding-top: 2em;
+  padding-left: 1em;
+}
+
+.table .table-top .g-p-r-s .p-of-gpa {
+  position: relative;
+  border-right: 1px solid black;
+}
+
+.table .table-top .g-p-r-s .p-of-gpa .p-o-marks-gpa {
+  width: 110px;
+  padding-bottom: 5.5em;
+  margin-top: 3.5em;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.table .table-top .g-p-r-s .remarks {
+  position: relative;
+}
+
+.table .table-top .g-p-r-s .remarks .remarks-txt {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  margin-top: 6em;
+}
+
+.table .mark-infos {
+  border: 1px solid black;
+  border-top: none;
+}
+
+.table .mark-infos .m-i-r1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 1px solid black;
+}
+
+.table .mark-infos .m-i-r1 .blank1 {
+  width: 32px;
+  border-right: 1px solid black;
+}
+
+.table .mark-infos .m-i-r1 .blank2 {
+  width: 95px;
+  border-right: 1px solid black;
+}
+
+.table .mark-infos .m-i-r1 .blank3 {
+  width: 143px;
+  border-right: 1px solid black;
+}
+
+.table .mark-infos .m-i-r1 .full-marks {
+  text-align: left;
+  width: 111px;
+  padding: .3em;
+  border-right: 1px solid black;
+}
+
+.table .mark-infos .m-i-r1 .s-marks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 151px;
+}
+
+.table .mark-infos .m-i-r1 .s-marks .mark {
+  width: 30px;
+  border-right: 1px solid black;
+  text-align: right;
+  padding: .3em;
+}
+
+.table .mark-infos .m-i-r1 .s-marks .t-f-mark {
+  width: 28px;
+}
+
+.table .mark-infos .m-i-r1 .s-marks .p-f-mark {
+  width: 28.5px;
+}
+
+.table .mark-infos .m-i-r1 .s-marks .s-t-mark {
+  text-align: center;
+  width: 35px;
+  padding: .3em;
+  border-right: 1px solid black;
+}
+
+.table .mark-infos .m-i-r1 .gpa-section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 53px 53px 53px;
+      grid-template-columns: 53px 53px 53px;
+}
+
+.table .mark-infos .m-i-r1 .gpa-section .gpa-point, .table .mark-infos .m-i-r1 .gpa-section .per-of-gpa {
+  border-right: 1px solid black;
+  text-align: center;
+  padding: .3em;
+}
+
+.table .student-data .s-d-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid black;
+  border-top: none;
+}
+
+.table .student-data .s-d-row .sl-no, .table .student-data .s-d-row .registration, .table .student-data .s-d-row .student-name, .table .student-data .s-d-row .s-b-roll, .table .student-data .s-d-row .s-sub-marks {
+  height: 60px;
+  border-right: 1px solid black;
+  text-align: center;
+}
+
+.table .student-data .s-d-row .sl-no p, .table .student-data .s-d-row .registration p, .table .student-data .s-d-row .student-name p, .table .student-data .s-d-row .s-b-roll p, .table .student-data .s-d-row .s-sub-marks p {
+  margin-top: 2.1em;
+}
+
+.table .student-data .s-d-row .sl-no {
+  width: 32px;
+}
+
+.table .student-data .s-d-row .registration {
+  width: 95px;
+}
+
+.table .student-data .s-d-row .student-name {
+  width: 143px;
+}
+
+.table .student-data .s-d-row .s-b-roll {
+  width: 111px;
+}
+
+.table .student-data .s-d-row .s-sub-marks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.table .student-data .s-d-row .s-sub-marks .s-m-c {
+  width: 30px;
+  border-right: 1px solid black;
+}
+
+.table .student-data .s-d-row .s-sub-marks .t-f-e {
+  width: 28px;
+}
+
+.table .student-data .s-d-row .s-sub-marks .p-c-asses {
+  width: 30px;
+}
+
+.table .student-data .s-d-row .s-sub-marks .p-f-e {
+  width: 28px;
+}
+
+.table .student-data .s-d-row .s-sub-marks .total-m-g-point {
+  width: 34px;
+}
+
+.table .student-data .s-d-row .s-sub-marks .total-m-g-point p {
+  margin: 0;
+}
+
+.table .student-data .s-d-row .s-sub-marks .total-m-g-point .m-obt, .table .student-data .s-d-row .s-sub-marks .total-m-g-point .g-l-obt, .table .student-data .s-d-row .s-sub-marks .total-m-g-point .g-p-obt {
+  text-align: center;
+  padding-top: 3px;
+}
+
+.table .student-data .s-d-row .s-sub-marks .total-m-g-point .m-obt, .table .student-data .s-d-row .s-sub-marks .total-m-g-point .g-l-obt {
+  border-bottom: 1px solid black;
+}
+
+.table .student-data .s-d-row .gpa-section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 53px 53px 53px;
+      grid-template-columns: 53px 53px 53px;
+}
+
+.table .student-data .s-d-row .gpa-section .gpa-point, .table .student-data .s-d-row .gpa-section .per-of-gpa {
+  border-right: 1px solid black;
+  text-align: center;
+  padding: .3em;
+}
+
+.table .student-data .s-d-row .gpa-section .gpa-point p, .table .student-data .s-d-row .gpa-section .per-of-gpa p {
+  margin-top: 2em;
+}
+
+.table .student-data .s-d-row-nine {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.table .student-data .s-d-row-nine .sl-no, .table .student-data .s-d-row-nine .registration, .table .student-data .s-d-row-nine .student-name, .table .student-data .s-d-row-nine .s-b-roll, .table .student-data .s-d-row-nine .s-sub-marks {
+  border-right: none;
+}
+
+.table .student-data .s-d-row-nine .s-m-c {
+  border-right: none !important;
+}
+
+.table .student-data .s-d-row-nine .m-obt, .table .student-data .s-d-row-nine .g-l-obt {
+  border-bottom: none !important;
+}
+
+.table .student-data .s-d-row-nine .gpa-point, .table .student-data .s-d-row-nine .per-of-gpa {
+  border-right: none !important;
+}
+
+
+
+.print-btn {
+  position: fixed;
+  right: -37px;
+  top: 100px;
+}
+
+.print-btn button {
+  cursor: pointer;
+  -webkit-box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.733);
+  box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.733);
+  background: #172577;
+  color: white;
+  border: none;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+}
+.instruction {
+  position: fixed;
+  background: white;
+  -webkit-box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.568);
+  box-shadow: -10px 2px 50px -8px rgba(0, 0, 0, 0.562);
+  z-index: 2;
+  padding: .5em;
+  padding-top:.3em;
+  border-radius: 2px;
+  top: 5px;
+  left: 5px;
+}
+.instruction table th, .instruction table td {
+  font-size: 10px !important;
+  width: 115px;
+}
+.instruction table th,.instruction table td{
+    border:1px solid black;
+}
+
+.instruction small {
+  color: #ff8800;
+  display: block;
+  margin: .5em 0;
+}
+.tabulation-bottom{
+    display:flex;
+    margin-top:5em;
+    justify-content:space-between;
+    align-items:end;
+}
+.t-b-sm{
+    font-size:12px ;
+
+}
+.n-s-opt{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.n-s-opt .t-b-sm{
+    margin-right:2em;
+    padding-top:.3em;
+}
+.t-f-sing-opt{
+    text-align:center;
+}
+@media only screen and (max-width: 1250px) {
+  .instruction {
+    display: none !important;
+  }
+}
+/*# sourceMappingURL=tabulation.css.map */
